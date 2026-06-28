@@ -1,0 +1,15 @@
+name: spiderweb-full
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+
+  - libstdcxx-ng=15.2.0
+  - libgcc-ng=15.2.0
+
+  - pip:
+      - networkx==3.4.2
+      - numpy==1.24.0
+      - prettytable==3.11.0
+      - psutil==6.1.0

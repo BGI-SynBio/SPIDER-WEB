@@ -1,0 +1,31 @@
+name: spiderweb-repl
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - pip
+
+  - clustalo=1.2.4=h503566f_10
+  - cutadapt=5.2=py310h7c10099_1
+  - mmseqs2=18.8cc5c=hd6d6fdc_0
+  - samtools=1.23.1=ha83d96e_0
+  - muscle=5.3=h9948957_3
+  - usearch=12.0_beta=h9ee0642_1
+
+  - libstdcxx-ng=15.2.0
+  - libgcc-ng=15.2.0
+
+  - pip:
+      - biopython==1.81
+      - imageio==2.31.3
+      - levenshtein==0.21.1
+      - matplotlib==3.10.0
+      - networkx==3.4.2
+      - numpy==1.24.0
+      - opencv-python==4.9.0.80
+      - prettytable==3.11.0
+      - psutil==6.1.0
+      - pysam==0.24.0
+      - reedsolo==1.7.0
+      - scipy==1.14.1
