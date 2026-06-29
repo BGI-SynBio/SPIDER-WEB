@@ -306,7 +306,7 @@ def evaluate_astar_search(accessor: ndarray,
                      location: int,
                      score: float):
             """
-            Initialize a hypothesis node.
+            Initialise a hypothesis node.
 
             :param vertex: vertex index in the coding digraph.
             :type vertex: int

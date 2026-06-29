@@ -149,7 +149,7 @@ class SpiderWeb:
                  accessor: ndarray,
                  check_3: bool = True):
         """
-        Initialize the SPIDER-WEB architecture.
+        Initialise the SPIDER-WEB architecture.
 
         :param accessor: the established coding digraph.
         :type accessor: numpy.ndarray
@@ -756,7 +756,7 @@ class SpiderWeb:
         :param seed: random seed if required.
         :type seed: int or None
 
-        :param analysis: method to analyze the produced sequence difference if required, i.e. hamming or levenshtein.
+        :param analysis: method to analyse the produced sequence difference if required, i.e. hamming or levenshtein.
         :type analysis: str or None
 
         :param similarity: minimum and/or maximum similarity between produced DNA sequences.
@@ -996,7 +996,7 @@ class FastTranscoder:
                  coexisting_map: Optional[dict] = None,
                  palindrome_map: Optional[ndarray] = None):
         """
-        Initialize the SPIDER-WEB architecture.
+        Initialise the SPIDER-WEB architecture.
 
         :param accessor: the established coding digraph.
         :type accessor: numpy.ndarray
@@ -1416,7 +1416,7 @@ class FastGenerator:
                  accessor: ndarray,
                  palindrome_map: Optional[ndarray] = None):
         """
-        Initialize the fast sequence generator based on the SPIDER-WEB architecture.
+        Initialise the fast sequence generator based on the SPIDER-WEB architecture.
 
         :param accessor: the established coding digraph.
         :type accessor: numpy.ndarray
@@ -1582,7 +1582,7 @@ class FastRepair:
                  thread_number: int = 1,
                  diversity: int = None):
         """
-        Initialize the fast sequence retriever based on the SPIDER-WEB architecture.
+        Initialise the fast sequence retriever based on the SPIDER-WEB architecture.
 
         :param accessor: the established coding digraph.
         :type accessor: numpy.ndarray
@@ -1656,7 +1656,7 @@ class FastRepair:
         :param communication_ports: Port to receive and send DNA sequences.
         :type communication_ports: tuple or None
 
-        :param latency: latency seconds for initializing the accelerator.
+        :param latency: latency seconds for initialising the accelerator.
         :type latency: int
         """
         if sequence_paths is not None:
@@ -2047,7 +2047,7 @@ def create_coding_digraph(window_length: int,
     :param run_length: maximum single-nucleotide length in the produced DNA sequences.
     :type run_length: int or None
 
-    :param gc_range: regionalized GC content per window length in the produced DNA sequences.
+    :param gc_range: regionalised GC content per window length in the produced DNA sequences.
     :type gc_range: list or None
 
     :param undesired_motifs: undesired DNA motifs in the produced DNA sequences.
@@ -2106,7 +2106,7 @@ def find_vertices(window_length: int,
     :param run_length: maximum single-nucleotide length in the produced DNA sequences.
     :type run_length: int or None
 
-    :param gc_range: regionalized GC content per window length in the produced DNA sequences.
+    :param gc_range: regionalised GC content per window length in the produced DNA sequences.
     :type gc_range: list or None
 
     :param undesired_motifs: undesired DNA undesired_motifs in the produced DNA sequences.
@@ -2118,7 +2118,7 @@ def find_vertices(window_length: int,
     :return: usable vertices.
     :rtype: numpy.ndarray
     """
-    # initialize the k-mers (a.k.a vertices).
+    # initialise the k-mers (a.k.a vertices).
     k_mers = i2m(integers=arange(4 ** window_length, dtype=int), length=window_length)
 
     usable, screen_info = ones(shape=(4 ** window_length,), dtype=bool), []

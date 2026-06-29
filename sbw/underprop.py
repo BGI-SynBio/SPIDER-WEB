@@ -10,7 +10,7 @@ class Monitor(object):
 
     def __init__(self):
         """
-        Initialize the monitor to identify the task progress.
+        Initialise the monitor to identify the task progress.
         """
         self.last_time = None
 

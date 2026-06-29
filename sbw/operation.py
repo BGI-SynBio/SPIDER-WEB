@@ -38,7 +38,7 @@ def merge(virtual_vertices: ndarray,
     :param verbose: verbosity mode.
     :type verbose: bool
 
-    :return: complete synthesized DNA sequences.
+    :return: complete synthesised DNA sequences.
     :rtype: list
 
     .. note::

@@ -15,7 +15,7 @@ class DNAFountain:
                  redundancy: float = 0.025,                      # default cdist in DNA Fountain.
                  recursion_depth: int = 10000000):
         """
-        Initialize the DNA fountain algorithm.
+        Initialise the DNA fountain algorithm.
 
         :param failure: decoding failure probability (known as delta).
         :type failure: float
@@ -50,7 +50,7 @@ class DNAFountain:
         :param homopolymer: maximum single-nucleotide length in the produced DNA sequences.
         :type homopolymer: int
 
-        :param gc_bias: degree of deviation of regionalized GC content from 50%.
+        :param gc_bias: degree of deviation of regionalised GC content from 50%.
         :type gc_bias: float
 
         :param false_threshold: upper limit of continuous inability to obtain valid DNA sequences.
@@ -239,7 +239,7 @@ class HEDGES:
                  previous_number: int = 8,
                  low_order_number: int = 10):
         """
-        Initialize the HEDGES algorithm.
+        Initialise the HEDGES algorithm.
 
         :param pattern: encode pattern in HEDGES algorithm.
         :type pattern: list
@@ -276,7 +276,7 @@ class HEDGES:
         :param homopolymer: maximum single-nucleotide length in the produced DNA sequences.
         :type homopolymer: int
 
-        :param gc_bias: degree of deviation of regionalized GC content from 50%.
+        :param gc_bias: degree of deviation of regionalised GC content from 50%.
         :type gc_bias: float
 
         :param false_threshold: upper limit of continuous inability to obtain valid DNA sequences.
@@ -330,7 +330,7 @@ class HEDGES:
         :param homopolymer: maximum single-nucleotide length in the produced DNA sequences.
         :type homopolymer: int
 
-        :param gc_bias: degree of deviation of regionalized GC content from 50%.
+        :param gc_bias: degree of deviation of regionalised GC content from 50%.
         :type gc_bias: float
 
         :param false_threshold: upper limit of continuous inability to obtain valid DNA sequences.
