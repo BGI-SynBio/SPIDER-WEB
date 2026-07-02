@@ -3,9 +3,9 @@ This script consolidates the entire pipelines from the Composite-Hedges-Nanopore
 (https://github.com/ysfhtxn/Composite-Hedges-Nanopores/tree/main/CHN_invitro)
 into a single, self-contained Python implementation.
 These modifications are introduced to address practical limitations in the original implementation,
-including undocumented behaviors and instability in certain preprocessing steps,
+including undocumented behaviours and instability in certain preprocessing steps,
 which hinder direct and reproducible comparison under controlled conditions.
-To mitigate these issues, parts of the pipeline are restructured to ensure deterministic and consistent behavior.
+To mitigate these issues, parts of the pipeline are restructured to ensure deterministic and consistent behaviour.
 These changes are made solely for evaluation purposes
 and do not constitute a production-ready or strictly equivalent reimplementation of the original system.
 """
@@ -461,7 +461,7 @@ class CompositeHEDGESNanopores:
                  homopolymer: Optional[int] = 4,
                  gc_counts: Optional[Tuple[int, int]] = (9, 11)):
         """
-        Initialize the Composite HEDGES Nanopores coding algorithm.
+        Initialise the Composite HEDGES Nanopores coding algorithm.
 
         :param resolution: generated sequence number.
         :type resolution: int
@@ -836,7 +836,7 @@ class CompositeHEDGESNanopores:
                      parent: Optional[CompositeHEDGESNanopores.HypothesisNode] = None,
                      composite_symbol: Optional[str] = None):
             """
-            Initialize a hypothesis node.
+            Initialise a hypothesis node.
 
             :param step: number of bits represented by each transition.
             :type step: int
