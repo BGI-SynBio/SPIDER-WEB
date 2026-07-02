@@ -1,17 +1,10 @@
 # Package environment setup
 
-Different installation strategies are provided for different use cases. 
-To minimize dependency requirements, 
-we strongly recommend selecting the installation option that 
-best matches your intended workflow and available resources, 
-including whether the required components have already been obtained from the authors.
-
-Before installing any environment, please make sure that the required code repository can be downloaded locally.
-```shell
-git clone https://github.com/BGI-SynBio/SPIDER-WEB.git 
-```
-
 Please note that, except for the "basic setup", all other setups require a Linux environment.
+Some executable files used for acceleration purposes or hardware-coupled execution 
+are not directly included in this code repository.
+These files may be made available upon reasonable request to the 
+[authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md). 
 
 ## Basic setup
 
@@ -117,5 +110,6 @@ Before running any related programs, activate the installed environment:
 conda activate spiderweb-repl
 ```
 
-Since this environment includes third-party bioinformatics tools, 
+Since this environment includes third-party bioinformatics tools 
+(i.e., `clustalo`, `cutadapt`, `mmseqs2`, `samtools`, `muscle`, and `usearch`), 
 we recommend checking their availability before conducting evaluation or comparison experiments.
