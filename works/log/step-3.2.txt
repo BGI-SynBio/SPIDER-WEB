@@ -1,0 +1,21 @@
+Encode high-compatible information segments for the real-time validation experiment:
+|████████████████████|100% (3200/3200) used 0011:53:03.
+
+Find suitable combination of DNA segments for global constraints:
+|████████████████████|100% (160/160) used 0024:15:43.
+
+Generate high-compatible addresses for the real-time validation experiment:
+|████████████████████|100% (160/160) used 0005:06:17.
+
+Find the best address for each sequence:
+|████████████████████|100% (160/160) used 0000:12:22.
+
+Create redundant DNA segments for Nanopore sequencing:
+|████████████████████|100% (4766/4766) used 0000:03:20.
+
+Link buffer segments for Nanopore sequencing:
+|████████████████████|100% (160/160) used 0000:00:00.
+
+Verify recoverability under the lossless condition:
+|████████████████████|100% (160/160) used 0000:01:10.
+3200 out of 3200 blocks were successfully retrieved.

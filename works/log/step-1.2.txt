@@ -1,0 +1,57 @@
+In the vertex screening process:
++--------------------------+---------+--------+
+|           step           |    +    |   -    |
++--------------------------+---------+--------+
+|      initialization      | 1048576 |        |
+|  homopolymer run-length  |         | 371740 |
+| guanine-cytosine content |         | 187300 |
+|     undesired motif      |         | 482714 |
++--------------------------+---------+--------+
+6822 k-mers are obtained!
+
+In the arc trimming process:
++--------------------------------+---+------+
+|              step              | + |  -   |
++--------------------------------+---+------+
+| out-degree & cycle requirement |   | 1404 |
++--------------------------------+---+------+
+Now we generate a coding digraph with 5418 vertices.
++------------+---------------+
+| out-degree | vertex number |
++------------+---------------+
+|     1      |      1454     |
+|     2      |      2628     |
+|     3      |      1336     |
++------------+---------------+
+
+We have 1 component in the coding digraph, its information density is:
++-----------------+-----------------------------+
+| component index | average information density |
++-----------------+-----------------------------+
+|        1        |            1.006            |
++-----------------+-----------------------------+
+
+Due to the inclusion of vertices with the out-degree of 3 and 1/2/4 in the coding digraph.
+So vertices with the out-degree of 3 will be used as points with a degree of 2.
+
+668 G-out arcs and 668 C-out arcs are trimmed!
+1120 vertices in the coding digraph are removed to satisfy the in-degree requirement.
+
+Finally, we have a coding digraph with 4298 vertices and
++------------+---------------+
+| out-degree | vertex number |
++------------+---------------+
+|     1      |      1332     |
+|     2      |      2966     |
++------------+---------------+
+
+Create start position finder containing 1 edit error.
+|████████████████████|100% (4298/4298) used 0000:00:00 (items: 88938).
+
+Collect coexisting vertices.
+|████████████████████|100% (4298/4298) used 0000:00:40 (count: 4151).
+
+Create the palindrome map for non-palindrome mode for produced DNA sequences.
+|████████████████████|100% (4298/4298) used 0000:00:00.
+
+Information density: 0.724 ± 0.017.

@@ -1,0 +1,185 @@
+Produce 3000 DNA sequences for comparable evaluation of different high-quality real-time retrievals:
+|████████████████████|100% (3000/3000) used 0000:01:18 (miss: 2463).
+
+Analyze the similarity among 3,000 produced DNA sequences:
+|████████████████████|100% (4498500/4498500) used 0016:51:56.
+
+Retrieve 3000000 DNA sequences of IDs from 0001-1000 with (#0)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:42:35.
+|████████████████████|100% (77/77) used 0000:24:13 (retrieved: 22513828).
+
+Retrieve 3000000 DNA sequences of IDs from 1001-2000 with (#0)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:23:13.
+|████████████████████|100% (51/51) used 0000:15:27 (retrieved: 13480738).
+
+Retrieve 3000000 DNA sequences of IDs from 2001-3000 with (#0)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:41:19.
+|████████████████████|100% (88/88) used 0000:26:59 (retrieved: 24683655).
+
+Retrieve 3000000 DNA sequences of IDs from 0001-1000 with (#1)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:26:59.
+|████████████████████|100% (53/53) used 0000:16:18 (retrieved: 12266915).
+
+Retrieve 3000000 DNA sequences of IDs from 1001-2000 with (#1)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:59:46.
+|████████████████████|100% (132/132) used 0000:41:18 (retrieved: 34511177).
+
+Retrieve 3000000 DNA sequences of IDs from 2001-3000 with (#1)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:45:43.
+|████████████████████|100% (97/97) used 0000:30:04 (retrieved: 25068974).
+
+Retrieve 3000000 DNA sequences of IDs from 0001-1000 with (#2)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:23:48.
+|████████████████████|100% (50/50) used 0000:16:06 (retrieved: 11456368).
+
+Retrieve 3000000 DNA sequences of IDs from 1001-2000 with (#2)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:54:23.
+|████████████████████|100% (115/115) used 0000:35:58 (retrieved: 28060289).
+
+Retrieve 3000000 DNA sequences of IDs from 2001-3000 with (#2)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:48:04.
+|████████████████████|100% (92/92) used 0000:29:23 (retrieved: 22707352).
+
+Retrieve 3000000 DNA sequences of IDs from 0001-1000 with (#3)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:31:11.
+|████████████████████|100% (61/61) used 0000:18:44 (retrieved: 14896248).
+
+Retrieve 3000000 DNA sequences of IDs from 1001-2000 with (#3)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:39:13.
+|████████████████████|100% (82/82) used 0000:25:15 (retrieved: 19732335).
+
+Retrieve 3000000 DNA sequences of IDs from 2001-3000 with (#3)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:41:04.
+|████████████████████|100% (84/84) used 0000:26:09 (retrieved: 20098156).
+
+Retrieve 3000000 DNA sequences of IDs from 0001-1000 with (#4)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:12:00.
+|████████████████████|100% (25/25) used 0000:07:12 (retrieved: 4980495).
+
+Retrieve 3000000 DNA sequences of IDs from 1001-2000 with (#4)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:30:08.
+|████████████████████|100% (61/61) used 0000:18:44 (retrieved: 14714977).
+
+Retrieve 3000000 DNA sequences of IDs from 2001-3000 with (#4)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:23:36.
+|████████████████████|100% (48/48) used 0000:14:44 (retrieved: 11644998).
+
+Retrieve 3000000 DNA sequences of IDs from 0001-1000 with (#5)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:28:50.
+|████████████████████|100% (56/56) used 0000:17:22 (retrieved: 12602628).
+
+Retrieve 3000000 DNA sequences of IDs from 1001-2000 with (#5)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:20:52.
+|████████████████████|100% (43/43) used 0000:12:54 (retrieved: 9085545).
+
+Retrieve 3000000 DNA sequences of IDs from 2001-3000 with (#5)-round error-prone PCR amplification:
+|████████████████████|100% (7/7) used 0000:20:54.
+|████████████████████|100% (40/40) used 0000:12:21 (retrieved: 9177516).
+
+Evaluation quality of DNA sequences of IDs from 0001-1000 with (#0)-round error-prone PCR amplification:
+|████████████████████|100% (22513828/22513828) used 0012:11:16.
+
+Evaluation quality of DNA sequences of IDs from 1001-2000 with (#0)-round error-prone PCR amplification:
+|████████████████████|100% (13480738/13480738) used 0008:53:56.
+
+Evaluation quality of DNA sequences of IDs from 2001-3000 with (#0)-round error-prone PCR amplification:
+|████████████████████|100% (24683655/24683655) used 0017:13:41.
+
+Evaluation quality of DNA sequences of IDs from 0001-1000 with (#1)-round error-prone PCR amplification:
+|████████████████████|100% (12266915/12266915) used 0011:08:05.
+
+Evaluation quality of DNA sequences of IDs from 1001-2000 with (#1)-round error-prone PCR amplification:
+|████████████████████|100% (34511177/34511177) used 0031:34:40.
+
+Evaluation quality of DNA sequences of IDs from 2001-3000 with (#1)-round error-prone PCR amplification:
+|████████████████████|100% (25068974/25068974) used 0031:58:00.
+
+Evaluation quality of DNA sequences of IDs from 0001-1000 with (#2)-round error-prone PCR amplification:
+|████████████████████|100% (11456368/11456368) used 0011:03:36.
+
+Evaluation quality of DNA sequences of IDs from 1001-2000 with (#2)-round error-prone PCR amplification:
+|████████████████████|100% (28060289/28060289) used 0030:44:12.
+
+Evaluation quality of DNA sequences of IDs from 2001-3000 with (#2)-round error-prone PCR amplification:
+|████████████████████|100% (22707352/22707352) used 0023:31:45.
+
+Evaluation quality of DNA sequences of IDs from 0001-1000 with (#3)-round error-prone PCR amplification:
+|████████████████████|100% (14896248/14896248) used 0015:43:31.
+
+Evaluation quality of DNA sequences of IDs from 1001-2000 with (#3)-round error-prone PCR amplification:
+|████████████████████|100% (19732335/19732335) used 0021:40:48.
+
+Evaluation quality of DNA sequences of IDs from 2001-3000 with (#3)-round error-prone PCR amplification:
+|████████████████████|100% (20098156/20098156) used 0022:05:40.
+
+Evaluation quality of DNA sequences of IDs from 0001-1000 with (#4)-round error-prone PCR amplification:
+|████████████████████|100% (4980495/4980495) used 0005:31:06.
+
+Evaluation quality of DNA sequences of IDs from 1001-2000 with (#4)-round error-prone PCR amplification:
+|████████████████████|100% (14714977/14714977) used 0016:19:37.
+
+Evaluation quality of DNA sequences of IDs from 2001-3000 with (#4)-round error-prone PCR amplification:
+|████████████████████|100% (11644998/11644998) used 0012:58:28.
+
+Evaluation quality of DNA sequences of IDs from 0001-1000 with (#5)-round error-prone PCR amplification:
+|████████████████████|100% (12602628/12602628) used 0014:09:23.
+
+Evaluation quality of DNA sequences of IDs from 1001-2000 with (#5)-round error-prone PCR amplification:
+|████████████████████|100% (9085545/9085545) used 0010:11:05.
+
+Evaluation quality of DNA sequences of IDs from 2001-3000 with (#5)-round error-prone PCR amplification:
+|████████████████████|100% (9177516/9177516) used 0010:19:21.
+
+Generate sample data from raw data in 0001-1000 with #0:
+|████████████████████|100% (22363886/22363886) used 0000:00:12 (used: 416951).
+
+Generate sample data from raw data in 0001-1000 with #1:
+|████████████████████|100% (12194384/12194384) used 0000:00:15 (used: 490335).
+
+Generate sample data from raw data in 0001-1000 with #2:
+|████████████████████|100% (11383683/11383683) used 0000:00:16 (used: 521377).
+
+Generate sample data from raw data in 0001-1000 with #3:
+|████████████████████|100% (14703548/14703548) used 0000:00:14 (used: 453758).
+
+Generate sample data from raw data in 0001-1000 with #4:
+|████████████████████|100% (4863799/4863799) used 0000:00:13 (used: 447441).
+
+Generate sample data from raw data in 0001-1000 with #5:
+|████████████████████|100% (12511849/12511849) used 0000:00:14 (used: 485190).
+
+Generate sample data from raw data in 1001-2000 with #0:
+|████████████████████|100% (13118507/13118507) used 0000:00:21 (used: 663069).
+
+Generate sample data from raw data in 1001-2000 with #1:
+|████████████████████|100% (33531112/33531112) used 0000:00:17 (used: 541059).
+
+Generate sample data from raw data in 1001-2000 with #2:
+|████████████████████|100% (27072171/27072171) used 0000:00:42 (used: 460350).
+
+Generate sample data from raw data in 1001-2000 with #3:
+|████████████████████|100% (10207464/10207464) used 0000:00:24 (used: 756145).
+
+Generate sample data from raw data in 1001-2000 with #4:
+|████████████████████|100% (14143810/14143810) used 0000:00:15 (used: 402485).
+
+Generate sample data from raw data in 1001-2000 with #5:
+|████████████████████|100% (8607464/8607464) used 0000:00:12 (used: 401929).
+
+Generate sample data from raw data in 2001-3000 with #0:
+|████████████████████|100% (23133412/23133412) used 0000:00:12 (used: 423952).
+
+Generate sample data from raw data in 2001-3000 with #1:
+|████████████████████|100% (23276386/23276386) used 0000:00:16 (used: 511819).
+
+Generate sample data from raw data in 2001-3000 with #2:
+|████████████████████|100% (20867933/20867933) used 0000:00:14 (used: 473402).
+
+Generate sample data from raw data in 2001-3000 with #3:
+|████████████████████|100% (9456508/9456508) used 0000:00:17 (used: 423200).
+
+Generate sample data from raw data in 2001-3000 with #4:
+|████████████████████|100% (10541258/10541258) used 0000:00:16 (used: 509903).
+
+Generate sample data from raw data in 2001-3000 with #5:
+|████████████████████|100% (7681476/7681476) used 0000:00:14 (used: 424260).

@@ -1,0 +1,308 @@
+Produce 1,000,000 DNA sequences for additional correction evaluation:
+|████████████████████|100% (1000000/1000000) used 0005:59:54 (miss: 941243).
+
+Correct 1,000,000 DNA sequences under different error rates (using Python):
+|████████████████████|100% (18/18) used 0004:39:52.
+
++--------+--------------------+-------------------+-----------+--------------------+-------------------+-----------+
+| errors | containing count 1 | screening count 1 | runtime 1 | containing count 2 | screening count 2 | runtime 2 |
++--------+--------------------+-------------------+-----------+--------------------+-------------------+-----------+
+|   0    |      1000000       |         0         |  239.6385 |      1000000       |         0         |  134.4128 |
+|   1    |       977233       |       17401       |  394.6273 |       977233       |       12024       |  282.8366 |
+|   2    |       954494       |       34316       |  548.6159 |       954494       |       22098       |  453.0461 |
+|   3    |       931249       |       50867       |  707.4448 |       931249       |       30437       |  554.6037 |
+|   4    |       907812       |       66729       |  862.4023 |       907812       |       37031       |  676.8697 |
+|   5    |       883350       |       82849       | 1039.8542 |       883350       |       42241       |  804.1032 |
+|   6    |       852779       |       103781      | 1228.4712 |       852779       |       52516       |  930.3563 |
+|   7    |       783112       |       165494      | 1368.0994 |       783112       |       104465      | 1028.5421 |
+|   8    |       580130       |       368697      | 1273.7086 |       580130       |       308849      |  923.7351 |
++--------+--------------------+-------------------+-----------+--------------------+-------------------+-----------+
+
+Evaluate the retrieval of single sequences when error(s) = 1:
+|████████████████████|100% (1000000/1000000) used 0000:19:52.
+|████████████████████|100% (1000000/1000000) used 0000:15:21.
+
+Evaluate the retrieval of single sequences when error(s) = 2:
+|████████████████████|100% (1000000/1000000) used 0000:30:31.
+|████████████████████|100% (1000000/1000000) used 0000:25:30.
+
+Evaluate the retrieval of single sequences when error(s) = 3:
+|████████████████████|100% (1000000/1000000) used 0000:42:00.
+|████████████████████|100% (1000000/1000000) used 0000:37:55.
+
+Evaluate the retrieval of single sequences when error(s) = 4:
+|████████████████████|100% (1000000/1000000) used 0000:52:34.
+|████████████████████|100% (1000000/1000000) used 0000:46:37.
+
+Evaluate the retrieval of single sequences when error(s) = 5:
+|████████████████████|100% (1000000/1000000) used 0001:09:51.
+|████████████████████|100% (1000000/1000000) used 0000:59:01.
+
+Evaluate the retrieval of single sequences when error(s) = 6:
+|████████████████████|100% (1000000/1000000) used 0001:33:50.
+|████████████████████|100% (1000000/1000000) used 0001:21:50.
+
+Evaluate the retrieval of single sequences when error(s) = 7:
+|████████████████████|100% (1000000/1000000) used 0002:11:09.
+|████████████████████|100% (1000000/1000000) used 0001:55:29.
+
+Evaluate the retrieval of single sequences when error(s) = 8:
+|████████████████████|100% (1000000/1000000) used 0004:18:33.
+|████████████████████|100% (1000000/1000000) used 0004:03:22.
+
+Estimate required copy number from 1,000,000 DNA sequences under different error rates:
++--------+-------------------------------------------------+----------------------------------------------------+
+| errors | average required number (with global screening) | average required number (without global screening) |
++--------+-------------------------------------------------+----------------------------------------------------+
+|   1    |                       2.22                      |                        2.36                        |
+|   2    |                       2.44                      |                        2.66                        |
+|   3    |                       2.65                      |                        2.90                        |
+|   4    |                       2.84                      |                        3.10                        |
+|   5    |                       3.03                      |                        3.27                        |
+|   6    |                       3.24                      |                        3.45                        |
+|   7    |                       3.60                      |                        3.79                        |
+|   8    |                       4.94                      |                        5.16                        |
++--------+-------------------------------------------------+----------------------------------------------------+
+
+Evaluating speed when errors = 0.0% using 1 threads:
+|████████████████████|100% (100/100) used 0000:09:26.
+
+Evaluating speed when errors = 0.5% using 1 threads:
+|████████████████████|100% (100/100) used 0000:13:11.
+
+Evaluating speed when errors = 1.0% using 1 threads:
+|████████████████████|100% (100/100) used 0000:17:40.
+
+Evaluating speed when errors = 1.5% using 1 threads:
+|████████████████████|100% (100/100) used 0000:22:44.
+
+Evaluating speed when errors = 2.0% using 1 threads:
+|████████████████████|100% (100/100) used 0000:29:23.
+
+Evaluating speed when errors = 2.5% using 1 threads:
+|████████████████████|100% (100/100) used 0000:39:22.
+
+Evaluating speed when errors = 3.0% using 1 threads:
+|████████████████████|100% (100/100) used 0000:53:08.
+
+Evaluating speed when errors = 3.5% using 1 threads:
+|████████████████████|100% (100/100) used 0001:10:37.
+
+Evaluating speed when errors = 4.0% using 1 threads:
+|████████████████████|100% (100/100) used 0001:16:21.
+
+Evaluating speed when errors = 0.0% using 2 threads:
+|████████████████████|100% (100/100) used 0000:07:48.
+
+Evaluating speed when errors = 0.5% using 2 threads:
+|████████████████████|100% (100/100) used 0000:10:07.
+
+Evaluating speed when errors = 1.0% using 2 threads:
+|████████████████████|100% (100/100) used 0000:13:02.
+
+Evaluating speed when errors = 1.5% using 2 threads:
+|████████████████████|100% (100/100) used 0000:16:35.
+
+Evaluating speed when errors = 2.0% using 2 threads:
+|████████████████████|100% (100/100) used 0000:21:27.
+
+Evaluating speed when errors = 2.5% using 2 threads:
+|████████████████████|100% (100/100) used 0000:28:18.
+
+Evaluating speed when errors = 3.0% using 2 threads:
+|████████████████████|100% (100/100) used 0000:38:12.
+
+Evaluating speed when errors = 3.5% using 2 threads:
+|████████████████████|100% (100/100) used 0000:50:50.
+
+Evaluating speed when errors = 4.0% using 2 threads:
+|████████████████████|100% (100/100) used 0000:55:52.
+
+Evaluating speed when errors = 0.0% using 3 threads:
+|████████████████████|100% (100/100) used 0000:07:24.
+
+Evaluating speed when errors = 0.5% using 3 threads:
+|████████████████████|100% (100/100) used 0000:08:49.
+
+Evaluating speed when errors = 1.0% using 3 threads:
+|████████████████████|100% (100/100) used 0000:11:01.
+
+Evaluating speed when errors = 1.5% using 3 threads:
+|████████████████████|100% (100/100) used 0000:13:49.
+
+Evaluating speed when errors = 2.0% using 3 threads:
+|████████████████████|100% (100/100) used 0000:17:46.
+
+Evaluating speed when errors = 2.5% using 3 threads:
+|████████████████████|100% (100/100) used 0000:23:19.
+
+Evaluating speed when errors = 3.0% using 3 threads:
+|████████████████████|100% (100/100) used 0000:31:36.
+
+Evaluating speed when errors = 3.5% using 3 threads:
+|████████████████████|100% (100/100) used 0000:41:49.
+
+Evaluating speed when errors = 4.0% using 3 threads:
+|████████████████████|100% (100/100) used 0000:46:56.
+
+Evaluating speed when errors = 0.0% using 4 threads:
+|████████████████████|100% (100/100) used 0000:07:20.
+
+Evaluating speed when errors = 0.5% using 4 threads:
+|████████████████████|100% (100/100) used 0000:08:12.
+
+Evaluating speed when errors = 1.0% using 4 threads:
+|████████████████████|100% (100/100) used 0000:10:06.
+
+Evaluating speed when errors = 1.5% using 4 threads:
+|████████████████████|100% (100/100) used 0000:12:33.
+
+Evaluating speed when errors = 2.0% using 4 threads:
+|████████████████████|100% (100/100) used 0000:15:58.
+
+Evaluating speed when errors = 2.5% using 4 threads:
+|████████████████████|100% (100/100) used 0000:20:44.
+
+Evaluating speed when errors = 3.0% using 4 threads:
+|████████████████████|100% (100/100) used 0000:28:02.
+
+Evaluating speed when errors = 3.5% using 4 threads:
+|████████████████████|100% (100/100) used 0000:37:44.
+
+Evaluating speed when errors = 4.0% using 4 threads:
+|████████████████████|100% (100/100) used 0000:40:33.
+
+Evaluating speed when errors = 0.0% using 5 threads:
+|████████████████████|100% (100/100) used 0000:07:26.
+
+Evaluating speed when errors = 0.5% using 5 threads:
+|████████████████████|100% (100/100) used 0000:07:50.
+
+Evaluating speed when errors = 1.0% using 5 threads:
+|████████████████████|100% (100/100) used 0000:09:27.
+
+Evaluating speed when errors = 1.5% using 5 threads:
+|████████████████████|100% (100/100) used 0000:11:34.
+
+Evaluating speed when errors = 2.0% using 5 threads:
+|████████████████████|100% (100/100) used 0000:14:48.
+
+Evaluating speed when errors = 2.5% using 5 threads:
+|████████████████████|100% (100/100) used 0000:19:26.
+
+Evaluating speed when errors = 3.0% using 5 threads:
+|████████████████████|100% (100/100) used 0000:26:24.
+
+Evaluating speed when errors = 3.5% using 5 threads:
+|████████████████████|100% (100/100) used 0000:34:50.
+
+Evaluating speed when errors = 4.0% using 5 threads:
+|████████████████████|100% (100/100) used 0000:38:06.
+
+Evaluating speed when errors = 0.0% using 6 threads:
+|████████████████████|100% (100/100) used 0000:07:25.
+
+Evaluating speed when errors = 0.5% using 6 threads:
+|████████████████████|100% (100/100) used 0000:07:35.
+
+Evaluating speed when errors = 1.0% using 6 threads:
+|████████████████████|100% (100/100) used 0000:09:13.
+
+Evaluating speed when errors = 1.5% using 6 threads:
+|████████████████████|100% (100/100) used 0000:11:11.
+
+Evaluating speed when errors = 2.0% using 6 threads:
+|████████████████████|100% (100/100) used 0000:14:09.
+
+Evaluating speed when errors = 2.5% using 6 threads:
+|████████████████████|100% (100/100) used 0000:18:17.
+
+Evaluating speed when errors = 3.0% using 6 threads:
+|████████████████████|100% (100/100) used 0000:24:24.
+
+Evaluating speed when errors = 3.5% using 6 threads:
+|████████████████████|100% (100/100) used 0000:31:58.
+
+Evaluating speed when errors = 4.0% using 6 threads:
+|████████████████████|100% (100/100) used 0000:34:25.
+
+Evaluating speed when errors = 0.0% using 7 threads:
+|████████████████████|100% (100/100) used 0000:07:45.
+
+Evaluating speed when errors = 0.5% using 7 threads:
+|████████████████████|100% (100/100) used 0000:07:27.
+
+Evaluating speed when errors = 1.0% using 7 threads:
+|████████████████████|100% (100/100) used 0000:09:00.
+
+Evaluating speed when errors = 1.5% using 7 threads:
+|████████████████████|100% (100/100) used 0000:10:52.
+
+Evaluating speed when errors = 2.0% using 7 threads:
+|████████████████████|100% (100/100) used 0000:13:45.
+
+Evaluating speed when errors = 2.5% using 7 threads:
+|████████████████████|100% (100/100) used 0000:17:38.
+
+Evaluating speed when errors = 3.0% using 7 threads:
+|████████████████████|100% (100/100) used 0000:23:28.
+
+Evaluating speed when errors = 3.5% using 7 threads:
+|████████████████████|100% (100/100) used 0000:30:37.
+
+Evaluating speed when errors = 4.0% using 7 threads:
+|████████████████████|100% (100/100) used 0000:32:46.
+
+Evaluating speed when errors = 0.0% using 8 threads:
+|████████████████████|100% (100/100) used 0000:07:57.
+
+Evaluating speed when errors = 0.5% using 8 threads:
+|████████████████████|100% (100/100) used 0000:07:23.
+
+Evaluating speed when errors = 1.0% using 8 threads:
+|████████████████████|100% (100/100) used 0000:08:52.
+
+Evaluating speed when errors = 1.5% using 8 threads:
+|████████████████████|100% (100/100) used 0000:10:38.
+
+Evaluating speed when errors = 2.0% using 8 threads:
+|████████████████████|100% (100/100) used 0000:13:25.
+
+Evaluating speed when errors = 2.5% using 8 threads:
+|████████████████████|100% (100/100) used 0000:17:15.
+
+Evaluating speed when errors = 3.0% using 8 threads:
+|████████████████████|100% (100/100) used 0000:22:47.
+
+Evaluating speed when errors = 3.5% using 8 threads:
+|████████████████████|100% (100/100) used 0000:29:38.
+
+Evaluating speed when errors = 4.0% using 8 threads:
+|████████████████████|100% (100/100) used 0000:31:24.
+
+Evaluating speed when errors = 0.0% using 9 threads:
+|████████████████████|100% (100/100) used 0000:08:06.
+
+Evaluating speed when errors = 0.5% using 9 threads:
+|████████████████████|100% (100/100) used 0000:07:20.
+
+Evaluating speed when errors = 1.0% using 9 threads:
+|████████████████████|100% (100/100) used 0000:08:51.
+
+Evaluating speed when errors = 1.5% using 9 threads:
+|████████████████████|100% (100/100) used 0000:10:29.
+
+Evaluating speed when errors = 2.0% using 9 threads:
+|████████████████████|100% (100/100) used 0000:13:15.
+
+Evaluating speed when errors = 2.5% using 9 threads:
+|████████████████████|100% (100/100) used 0000:16:53.
+
+Evaluating speed when errors = 3.0% using 9 threads:
+|████████████████████|100% (100/100) used 0000:22:15.
+
+Evaluating speed when errors = 3.5% using 9 threads:
+|████████████████████|100% (100/100) used 0000:28:55.
+
+Evaluating speed when errors = 4.0% using 9 threads:
+|████████████████████|100% (100/100) used 0000:30:28.

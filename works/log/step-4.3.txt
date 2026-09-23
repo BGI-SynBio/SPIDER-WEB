@@ -1,0 +1,79 @@
+Evaluate default setting of the conventional data retrieval pipeline:
+|████████████████████|100% (108/108) used 0079:02:41.
+
+Calculate high-throughput sequencing error:
+|████████████████████|100% (3301897/3301897) used 0000:10:43 (ignore: 154434).
+
+Evaluate the basic performance of exclusive-or parity without any inner code:
+|████████████████████|100% (550/550) used 0000:10:47 (set: 0.50, loss: 0.10, obtain: 0.977).
+
+Evaluate the basic performance of reed-solomon code without any inner code:
+|████████████████████|100% (550/550) used 0004:24:48 (set: 0.50, loss: 0.10, obtain: 1.000).
+
+Evaluate the basic performance of fountain code without any inner code:
+|████████████████████|100% (550/550) used 0002:33:08 (set: 0.50, loss: 0.10, obtain: 0.992).
+
+Evaluate the performance of exclusive-or parity with SPIDER-WEB:
+|████████████████████|100% (550/550) used 0000:10:47 (set: 0.50, loss: 0.10, obtain: 0.977).
+
+Evaluate the performance of reed-solomon code with SPIDER-WEB:
+|████████████████████|100% (550/550) used 0008:11:43 (set: 0.50, loss: 0.10, obtain: 1.000).
+
+Evaluate the performance of fountain code with SPIDER-WEB:
+|████████████████████|100% (550/550) used 0007:40:28 (set: 0.50, loss: 0.10, obtain: 0.992).
+
+Generate SPIDER-WEB:
+|████████████████████|100% (10/10) used 0000:00:07.
+
+Generate exclusive-or parity for SPIDER-WEB:
+|████████████████████|100% (500/500) used 0000:09:43.
+
+Generate reed-solomon code for SPIDER-WEB:
+|████████████████████|100% (500/500) used 0000:11:17.
+
+Generate fountain code for SPIDER-WEB:
+|████████████████████|100% (500/500) used 0000:16:13.
+
+Test baseline:
+|████████████████████|100% (4500/4500) used 0001:19:08.
+
+Test exclusive-or parity:
+|████████████████████|100% (225000/225000) used 0066:12:29.
+
+Test reed-solomon code:
+|████████████████████|100% (225000/225000) used 0090:12:43.
+
+Test fountain code:
+|████████████████████|100% (225000/225000) used 0092:58:54.
+
+Step 1: prepare binary messages with shape (28,288).
+|████████████████████|100% (1/1) used 0000:00:00.
+Step 2: add fault tolerance mechanism.
+|████████████████████|100% (28/28) used 0000:00:00.
+Step 3: encode binary messages.
+|████████████████████|100% (28/28) used 0000:00:07.
+Step 4: decode DNA sequences.
+|████████████████████|100% (28/28) used 0000:06:42.
+Step 5: correct binary messages and confirm the correctness of the implementation.
+|████████████████████|100% (28/28) used 0000:00:00.
+correctness: 28/28.
+
+Equivalence testing of adding, correcting, and removing RS code segments without error rate:
+|████████████████████|100% (28/28) used 0000:00:00.
+correctness: 28/28.
+
+Equivalence testing of constructing, grouping, and detecting barcodes without error rate:
+|████████████████████|100% (5/5) used 0000:00:11.
+correctness: True.
+
+Produce CHN data:
+|████████████████████|100% (25/25) used 0031:24:04 (fail: 4750).
+
+Evaluate CHN performance:
+|████████████████████|100% (225/225) used 3614:33:25 (success: 142).
+
+Produce equivalent SPIDER-WEB from CHN data:
+|████████████████████|100% (25/25) used 0000:00:34.
+
+Evaluate SPIDER-WEB performance:
+|████████████████████|100% (225/225) used 0001:03:50.
