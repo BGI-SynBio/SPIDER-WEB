@@ -69,7 +69,7 @@ conda activate spiderweb-full
 
 ## Replicability-oriented setup
 
-If you intend to reproduce all experiments reported in the SPIDER-WEB publication, 
+If you intend to replicate all experiments reported in the SPIDER-WEB publication, 
 including all steps described under the [`works`](https://github.com/BGI-SynBio/SPIDER-WEB/tree/main/works) directory,
 please install the required environment using the following instructions:
 
