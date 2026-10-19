@@ -424,6 +424,12 @@ class OuterCode:
 
     def __init__(self,
                  method: str):
+        """
+        Initialise the outer code.
+
+        :param method: method name of outer code.
+        :type method: str
+        """
         if method not in ["xor", "reed-solomon", "fountain"]:
             raise ValueError("Invalid method!")
 
@@ -432,6 +438,15 @@ class OuterCode:
     def set_params(self,
                    redundancy: float,
                    parameters: Optional[dict] = None):
+        """
+        Set parameters of outer code.
+
+        :param redundancy: logical redundancy.
+        :type redundancy: float
+
+        :param parameters: other parameters of outer code.
+        :type parameters: dict
+        """
         if self.method == "fountain":
             if parameters is None or "delta" not in parameters or "cdist" not in parameters:
                 raise ValueError("Invalid parameters!")
@@ -444,6 +459,24 @@ class OuterCode:
                skipping_range: int = 0,
                block_size: Optional[int] = None) \
             -> ndarray:
+        """
+        Insert error-correcting regions.
+
+        :param binary_messages: original binary messages.
+        :type binary_messages: ndarray
+
+        :param address_length: length of the binary address (barcode) in bits.
+        :type address_length: int
+
+        :param skipping_range: number of address indices reserved between original and redundant messages.
+        :type skipping_range: int
+
+        :param block_size: number of original messages per Reed–Solomon coding block.
+        :type block_size: int
+
+        :return: binary messages with logical redundancy.
+        :rtype: ndarray
+        """
         redundant_number = int(len(binary_messages) * self.redundancy + 0.5)
         if self.method == "xor":
             total_number = len(binary_messages) + redundant_number + skipping_range
@@ -531,6 +564,27 @@ class OuterCode:
                skipping_range: int = 0,
                block_size: Optional[int] = None) \
             -> ndarray:
+        """
+        Repair missing original binary messages using retrieved messages and error-correcting redundancy.
+
+        :param binary_messages: retrieved binary messages.
+        :type binary_messages: ndarray
+
+        :param address_length: length of the binary address (barcode) in bits.
+        :type address_length: int
+
+        :param original_number: number of original binary messages before redundancy insertion.
+        :type original_number: int
+
+        :param skipping_range: number of address indices skipped between original and redundant messages.
+        :type skipping_range: int
+
+        :param block_size: number of original messages per Reed–Solomon decoding block.
+        :type block_size: Optional[int]
+
+        :return: reconstructed original binary messages in their original order (unrecovered bits filled with zeros).
+        :rtype: ndarray
+        """
         addresses, payloads = binary_messages[:, :address_length], binary_messages[:, address_length:]
         address_indices, message_length = m2i(matrix=addresses, base_size=2), len(payloads[0])
         redundant_number = int(original_number * self.redundancy + 0.5)
