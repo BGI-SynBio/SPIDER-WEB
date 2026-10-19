@@ -54,6 +54,107 @@ class TestNormalTranscoder(TestCase):
                     self.assertEqual(all(binary_messages == obtained_messages), True)
 
 
+class TestGlobalConstraints(TestCase):
+
+    def setUp(self):
+        self.window_length = 10
+        homopolymer = 2
+        gc_range = [0.4, 0.6]
+        motifs = adjust_motif_format(motif_set=[["GGC", "GGT"], ["AG", "GA", "CT", "TC"]])
+        self.accessor, vertices = create_coding_digraph(window_length=self.window_length,
+                                                        run_length=homopolymer, gc_range=gc_range,
+                                                        undesired_motifs=motifs)
+        self.virtualities = arange(len(vertices))
+        self.length = 20
+        self.repeat = 10
+        self.seed = 2023
+
+    def test(self):
+        method, iteration = SpiderWeb(accessor=self.accessor), 0
+        random.seed(self.seed)
+        random.shuffle(self.virtualities)
+        for used_virtuality in self.virtualities[:self.repeat]:
+            while True:
+                expected_message = random.randint(0, 2, size=(self.length,))
+                try:
+                    sequence = method.encode(message=expected_message, virtuality=used_virtuality)
+                    obtained_message = method.decode(sequence=sequence, virtuality=used_virtuality, length=self.length)
+                    self.assertEqual(all(expected_message == obtained_message), True)
+                    break
+                except ValueError:
+                    pass
+
+        for used_virtuality in self.virtualities[:self.repeat]:
+            while True:
+                expected_message = random.randint(0, 2, size=(self.length,))
+                try:
+                    sequence = method.encode(message=expected_message, virtuality=used_virtuality,
+                                             duplicatable=True)
+
+                    k_mers = []
+                    for index in range(len(sequence) - self.window_length + 1):
+                        k_mers.append(sequence[index:index + self.window_length])
+                    self.assertEqual(len(k_mers) == len(set(k_mers)), True)
+
+                    obtained_message = method.decode(sequence=sequence, virtuality=used_virtuality, length=self.length,
+                                                     duplicatable=True)
+                    self.assertEqual(all(expected_message == obtained_message), True)
+                    break
+                except ValueError:
+                    pass
+
+        for used_virtuality in self.virtualities[:self.repeat]:
+            while True:
+                expected_message = random.randint(0, 2, size=(self.length,))
+                try:
+                    sequence = method.encode(message=expected_message, virtuality=used_virtuality,
+                                             palindromable=True)
+
+                    k_mers, reversed_k_mers = [], []
+                    for index in range(len(sequence) - self.window_length):
+                        k_mer = sequence[index:index + self.window_length]
+                        reversed_k_mer = k_mer.translate(str.maketrans("ACGT", "TGCA"))[::-1]
+                        k_mers.append(k_mer)
+                        reversed_k_mers.append(reversed_k_mer)
+                    for index, reversed_k_mer in enumerate(reversed_k_mers):
+                        if reversed_k_mer == k_mers[index]:
+                            continue
+                        self.assertEqual(reversed_k_mer not in k_mers, True)
+
+                    obtained_message = method.decode(sequence=sequence, virtuality=used_virtuality, length=self.length,
+                                                     palindromable=True)
+                    self.assertEqual(all(expected_message == obtained_message), True)
+                    break
+                except ValueError:
+                    pass
+
+        for used_virtuality in self.virtualities[:self.repeat]:
+            while True:
+                expected_message = random.randint(0, 2, size=(self.length,))
+                try:
+                    sequence = method.encode(message=expected_message, virtuality=used_virtuality,
+                                             duplicatable=True, palindromable=True)
+
+                    k_mers, reversed_k_mers = [], []
+                    for index in range(len(sequence) - self.window_length + 1):
+                        k_mer = sequence[index:index + self.window_length]
+                        reversed_k_mer = k_mer.translate(str.maketrans("ACGT", "TGCA"))[::-1]
+                        k_mers.append(k_mer)
+                        reversed_k_mers.append(reversed_k_mer)
+                    self.assertEqual(len(k_mers) == len(set(k_mers)), True)
+                    for index, reversed_k_mer in enumerate(reversed_k_mers):
+                        if reversed_k_mer == k_mers[index]:
+                            continue
+                        self.assertEqual(reversed_k_mer not in k_mers, True)
+
+                    obtained_message = method.decode(sequence=sequence, virtuality=used_virtuality, length=self.length,
+                                                     duplicatable=True, palindromable=True)
+                    self.assertEqual(all(expected_message == obtained_message), True)
+                    break
+                except ValueError:
+                    pass
+
+
 class TestAllO3Transcode(TestCase):
 
     def setUp(self):
