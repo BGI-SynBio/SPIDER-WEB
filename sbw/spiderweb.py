@@ -224,7 +224,7 @@ class SpiderWeb:
             raise ValueError("\"virtuality\" should less than the number of vertices!")
 
         vertex, length, marker = self.__vertices[virtuality], len(message), 0
-
+        saved_values = [self.__vertices[virtuality]]
         if need_virtuality:
             sequence = m2s(i2m(array([self.__vertices[virtuality]]), length=self.__windowed))[0]
         else:
@@ -233,15 +233,18 @@ class SpiderWeb:
         if not self.__all_3:
             while marker < length:
                 available_values = []
-                for value in self.__accessor[vertex]:
-                    if value >= 0:
-                        nucleotide, available = self.__bases[value % 4], True
-                        if duplicatable and self.__check_duplicatable(sequence=sequence + nucleotide):
-                            available = False
-                        if palindromable and self.__check_palindromable(sequence=sequence + nucleotide):
-                            available = False
+                for follow_up in self.__accessor[vertex]:
+                    if follow_up >= 0:
+                        nucleotide, available = self.__bases[follow_up % 4], True
+                        if duplicatable:
+                            if len(where(array(saved_values) == follow_up)[0]) > 0:
+                                available = False
+                        if palindromable:
+                            r_follow_up = m2i(3 - i2m(array([follow_up]), length=self.__windowed)[0][::-1])
+                            if len(where(array(saved_values) == r_follow_up)[0]) > 0:
+                                available = False
                         if available:
-                            available_values.append(value)
+                            available_values.append(follow_up)
 
                 if len(available_values) == 3:
                     available_values = available_values[:2]
@@ -268,6 +271,8 @@ class SpiderWeb:
                     sequence += self.__bases[vertex % 4]
                     marker += 2
 
+                saved_values.append(vertex)
+
                 if verbose:
                     if length_fixed is None:
                         self.__monitor(marker, length)
@@ -286,11 +291,11 @@ class SpiderWeb:
             while sum(backup) > 0:
                 quotient, reminder = zeros(shape=(len(backup),), dtype=int), backup[0]
                 for position in arange(1, len(backup)):
-                    value = reminder * 2 + backup[position]
-                    if value >= 3:
-                        quotient[position], reminder = 1, value - 3
+                    follow_up = reminder * 2 + backup[position]
+                    if follow_up >= 3:
+                        quotient[position], reminder = 1, follow_up - 3
                     else:
-                        reminder = value
+                        reminder = follow_up
 
                 available_indices = where(self.__accessor[vertex] >= 0)
                 next_vertices = self.__accessor[vertex][available_indices]
@@ -319,25 +324,30 @@ class SpiderWeb:
                     while len(sequence) < length_fixed:
                         available_values = []
                         if not self.__all_3:
-                            for value in self.__accessor[vertex]:
-                                if value >= 0:
-                                    nucleotide, available = self.__bases[value % 4], True
-                                    if duplicatable and self.__check_duplicatable(sequence=sequence + nucleotide):
-                                        available = False
-                                    if palindromable and self.__check_palindromable(sequence=sequence + nucleotide):
-                                        available = False
+                            for follow_up in self.__accessor[vertex]:
+                                if follow_up >= 0:
+                                    nucleotide, available = self.__bases[follow_up % 4], True
+                                    if duplicatable:
+                                        if len(where(array(saved_values) == follow_up)[0]) > 0:
+                                            available = False
+                                    if palindromable:
+                                        r_follow_up = m2i(3 - i2m(array([follow_up]), length=self.__windowed)[0][::-1])
+                                        if len(where(array(saved_values) == r_follow_up)[0]) > 0:
+                                            available = False
                                     if available:
-                                        available_values.append(value)
+                                        available_values.append(follow_up)
                         else:
-                            for value in self.__accessor[vertex]:
-                                if value >= 0:
-                                    available_values.append(value)
+                            for follow_up in self.__accessor[vertex]:
+                                if follow_up >= 0:
+                                    available_values.append(follow_up)
 
                         if len(available_values) == 0:
                             break
                         else:
                             vertex = random.choice(available_values)
                             sequence += self.__bases[vertex % 4]
+
+                        saved_values.append(vertex)
 
                     if len(sequence) == length_fixed:
                         if seed is not None:
@@ -393,21 +403,23 @@ class SpiderWeb:
         else:
             vertex = m2i(s2m([sequence[:self.__windowed]]))
             base_values = s2m(dna_sequences=[sequence[self.__windowed:]])
+        saved_values = [vertex]
 
         if not self.__all_3:
             for process, base_value in enumerate(base_values):
                 available_values = []
-                for value in self.__accessor[vertex]:
-                    if value >= 0:
-                        nucleotide, available = self.__bases[value % 4], True
-                        if duplicatable and \
-                                self.__check_duplicatable(sequence=sequence[:process + self.__windowed] + nucleotide):
-                            available = False
-                        if palindromable and \
-                                self.__check_palindromable(sequence=sequence[:process + self.__windowed] + nucleotide):
-                            available = False
+                for follow_up in self.__accessor[vertex]:
+                    if follow_up >= 0:
+                        nucleotide, available = self.__bases[follow_up % 4], True
+                        if duplicatable:
+                            if len(where(array(saved_values) == follow_up)[0]) > 0:
+                                available = False
+                        if palindromable:
+                            r_follow_up = m2i(3 - i2m(array([follow_up]), length=self.__windowed)[0][::-1])
+                            if len(where(array(saved_values) == r_follow_up)[0]) > 0:
+                                available = False
                         if available:
-                            available_values.append(value)
+                            available_values.append(follow_up)
 
                 if len(available_values) == 3:
                     available_values = available_values[:2]
@@ -419,23 +431,25 @@ class SpiderWeb:
                 if out_degree == 1:
                     vertex = available_values[0]
                 elif out_degree == 2:
-                    for index, value in enumerate(available_values):
-                        if value % 4 == base_value:
+                    for index, follow_up in enumerate(available_values):
+                        if follow_up % 4 == base_value:
                             message[marker] = index
-                            vertex = value
+                            vertex = follow_up
                             break
                     marker += 1
                 else:
-                    for index, value in enumerate(available_values):
-                        if value % 4 == base_value:
+                    for index, follow_up in enumerate(available_values):
+                        if follow_up % 4 == base_value:
                             # noinspection PyTypeChecker
                             message[marker] = base_value // 2
                             if marker + 1 < length:
                                 # noinspection PyTypeChecker
                                 message[marker + 1] = base_value % 2
-                            vertex = value
+                            vertex = follow_up
                             break
                     marker += 2
+
+                saved_values.append(vertex)
 
                 if verbose:
                     self.__monitor(process + 1, number)
@@ -727,7 +741,7 @@ class SpiderWeb:
                 palindromable: bool = False,
                 need_preorder: bool = False,
                 seed: Optional[int] = None,
-                analysis: Optional[int] = None,
+                analysis: Optional[str] = None,
                 similarity: Optional[int] = None,
                 fail_repeats: Optional[int] = None,
                 verbose: bool = False) \
@@ -750,7 +764,7 @@ class SpiderWeb:
         :param palindromable: non-palindrome mode for produced DNA sequences if required.
         :type palindromable: bool
 
-        :param need_preorder: put the sequence of virtual node at the start  of the produced DNA sequence if required.
+        :param need_preorder: put the sequence of virtual node at the start of the produced DNA sequence if required.
         :type need_preorder: bool
 
         :param seed: random seed if required.
@@ -795,17 +809,20 @@ class SpiderWeb:
             miss_flag, fail = False, 0
 
             while True:
-                value = -ones(shape=(length - len(preorder) + 1,), dtype=int)
-                sequence, value[0] = preorder, self.__vertices[virtuality]
+                saved_values = -ones(shape=(length - len(preorder) + 1,), dtype=int)
+                sequence, saved_values[0] = preorder, self.__vertices[virtuality]
                 for step in range(length - len(preorder)):
                     available = []
-                    for follow_up in self.__accessor[value[step]]:
+                    for follow_up in self.__accessor[saved_values[step]]:
                         if follow_up == -1:
                             continue
-                        if duplicatable and self.__check_duplicatable(sequence=sequence):
-                            continue
-                        if palindromable and self.__check_palindromable(sequence=sequence):
-                            continue
+                        if duplicatable:
+                            if len(where(saved_values == follow_up)[0]) > 0:
+                                continue
+                        if palindromable:
+                            reverse_vertex = m2i(3 - i2m(array([follow_up]), length=self.__windowed)[0][::-1])
+                            if len(where(saved_values[:step + 1] == reverse_vertex)[0]) > 0:
+                                continue
 
                         available.append(follow_up)
 
@@ -819,7 +836,7 @@ class SpiderWeb:
                     # noinspection PyArgumentList
                     moment = random.choice(available)
                     sequence += self.__bases[moment % 4]
-                    value[step + 1] = moment
+                    saved_values[step + 1] = moment
 
                 if len(sequence) == length:
                     break
@@ -835,10 +852,10 @@ class SpiderWeb:
             else:
                 if analysis is not None:
                     if values is not None:
-                        value = array(value, dtype=int)
+                        saved_values = array(saved_values, dtype=int)
                         if analysis == "hamming":
                             # noinspection PyTypeChecker
-                            distances = hamming(group=values % 4, sample=value % 4)
+                            distances = hamming(group=values % 4, sample=saved_values % 4)
                             if similarity is not None:
                                 if "min" in similarity and similarity["min"] >= min(distances):
                                     continue
@@ -849,7 +866,7 @@ class SpiderWeb:
 
                         elif analysis == "levenshtein":
                             # noinspection PyTypeChecker
-                            distances = levenshtein(group=values % 4, sample=value % 4)
+                            distances = levenshtein(group=values % 4, sample=saved_values % 4)
                             if similarity is not None:
                                 if "min" in similarity and similarity["min"] >= min(distances):
                                     continue
@@ -861,9 +878,9 @@ class SpiderWeb:
                         else:
                             raise ValueError("No such distance metric!")
 
-                        values = vstack((values, expand_dims(value, axis=0)))
+                        values = vstack((values, expand_dims(saved_values, axis=0)))
                     else:
-                        values = array([value], dtype=int)
+                        values = array([saved_values], dtype=int)
 
             sequences.add(sequence)
             miss += miss_flag
@@ -935,45 +952,6 @@ class SpiderWeb:
             return collection.pop_all(top=diversity), collection.get_raw()
         else:
             return collection.pop_all(top=diversity)
-
-    def __check_duplicatable(self,
-                             sequence: str) \
-            -> bool:
-        """
-        Check the duplicates in DNA sequence.
-
-        :param sequence: produced DNA sequence.
-        :type sequence: str
-
-        :return: duplicatable flag.
-        :rtype: bool
-        """
-        k_mers = []
-
-        for location in range(len(sequence) - self.__windowed + 1):
-            k_mers.append(sequence[location: location + self.__windowed])
-
-        return len(k_mers) > len(set(k_mers))
-
-    def __check_palindromable(self,
-                              sequence: str) \
-            -> bool:
-        """
-        Check the palindrome in DNA sequence.
-
-        :param sequence: produced DNA sequence.
-        :type sequence: str
-
-        :return: palindromable flag.
-        :rtype: bool
-        """
-        chuck_sequence = sequence.translate(str.maketrans("ACGT", "TGCA"))[::-1]
-
-        for location in range(len(sequence) - self.__windowed):
-            if sequence[location: location + self.__windowed + 1] in chuck_sequence:
-                return True
-
-        return False
 
     def get_params(self) \
             -> dict:
@@ -1717,10 +1695,10 @@ class FastRepair:
                 # noinspection PyUnresolvedReferences
                 if process.info["name"] == "accelerator":
                     if name == "nt":
-                        # noinspection PyUnresolvedReferences
+                        # noinspection PyUnresolvedReferences,deprecation
                         system("taskkill /PID " + str(process.info["pid"]) + "/F")
                     else:
-                        # noinspection PyUnresolvedReferences
+                        # noinspection PyUnresolvedReferences,deprecation
                         system("kill -9 " + str(process.info["pid"]))
 
         if path.exists(self.__params["-a"]):
@@ -1972,6 +1950,7 @@ class RankingHeap(Heap):
         else:
             self.__count_set[count] = {sequence}
 
+    # noinspection method-overriding
     def pop_all(self,
                 top: Optional[int] = None) \
             -> set:
