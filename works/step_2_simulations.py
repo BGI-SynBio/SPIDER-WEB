@@ -63,7 +63,7 @@ def evaluate_conversion(seed: int,
         random.seed(seed)
         while True:
             # noinspection PyTypeChecker
-            total_vertices = referenced_vertex_group[random.randint(0, len(referenced_vertex_group))]
+            total_vertices = referenced_vertex_group[random.randint(0, len(referenced_vertex_group))].copy()
             random.shuffle(total_vertices)
             removed_number = random.randint(1, len(total_vertices) // 2)
             used_vertices = sort(total_vertices[:-removed_number])
@@ -93,7 +93,7 @@ def evaluate_conversion(seed: int,
                      compression=ZIP_DEFLATED) as file:
             for index in range(section):
                 for number in range(1, required_number + 1):
-                    accessor_path = tmp_path + str(index) + "." + str(len(records[index])) + ".npy"
+                    accessor_path = tmp_path + str(index) + "." + str(number) + ".npy"
                     # noinspection PyTypeChecker
                     file.write(accessor_path, path.basename(accessor_path))
                     remove(accessor_path)
@@ -110,7 +110,7 @@ def evaluate_conversion(seed: int,
         records["random"] = []
         for index in range(section):
             for number in range(1, required_number + 1):
-                accessor_path = tmp_path + str(index) + "." + str(number).zfill(len(str(required_number))) + ".npy"
+                accessor_path = tmp_path + str(index) + "." + str(number) + ".npy"
                 accessor_1 = load_data(file_path=accessor_path)
                 bound_1 = approximate_capacity(accessor=accessor_1)
                 vertex_number_1 = len(where(sum(((accessor_1 + 1).astype(bool)), axis=1).astype(bool) == 1)[0])
