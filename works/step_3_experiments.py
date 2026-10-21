@@ -7,8 +7,9 @@ from numpy import array, zeros, ones, arange, random, expand_dims, unpackbits, p
 from numpy import sum, abs, min, inf, uint8, where
 from os import listdir, path, remove
 from re import split, compile
+from shutil import copyfileobj
 # noinspection PyCompatibility
-from urllib.request import urlretrieve
+from urllib.request import Request, urlopen
 from zipfile import ZipFile, ZIP_DEFLATED
 
 from sbw import SpiderWeb, FastRepair, Monitor, adjust_motif_format, connect_digraph, m2s, i2m, load_data, save_data
@@ -42,7 +43,7 @@ def experiment_1(seed: int,
             for index_2 in range(index_1 + 1, len(payloads)):
                 similarity = levenshtein(sequence_1=payloads[index_1], sequence_2=payloads[index_2])
                 matrix[index_1, index_2], matrix[index_2, index_1] = similarity, similarity
-                monitor(process + 1, int(len(payloads - 1) * len(payloads) / 2))
+                monitor(process + 1, int((len(payloads) - 1) * len(payloads) / 2))
                 process += 1
         print()
         save_data(file_path=raw_path + "experiment.retrieval-2.similarities.npy", information=matrix)
@@ -226,8 +227,11 @@ def experiment_2(seed: int):
     if (not path.exists(raw_path + "experiment.case-1.video.gif")) or \
        (not path.exists(raw_path + "experiment.case-2.figures.npy")):
         if not path.exists(tmp_path + "total-horse.jpg"):
-            urlretrieve(url="https://upload.wikimedia.org/wikipedia/commons/4/4a/Muybridge_race_horse_gallop.jpg",
-                        filename=tmp_path + "total-horse.jpg")
+            url = "https://upload.wikimedia.org/wikipedia/commons/4/4a/Muybridge_race_horse_gallop.jpg"
+            req = Request(url=url, headers={"User-Agent": "SPIDER-WEB"})
+            with urlopen(req, timeout=30) as response:
+                with open(tmp_path + "total-horse.jpg", "wb") as file:
+                    copyfileobj(response, file)
         image = imread(tmp_path + "total-horse.jpg")
         gray_image = cvtColor(image, COLOR_BGR2GRAY)
         resized_image = resize(gray_image, (160, 120))
@@ -373,7 +377,7 @@ def experiment_2(seed: int):
                         if detect_tail(segment=segment, nucleotide="T", length=window_size // 2):
                             continue
 
-                        # analyse forward combination.
+                        # analyze forward combination.
                         segment_1 = anchor + segment + sequence
 
                         # check the minimum spacing between the same 10-mer.
@@ -386,7 +390,7 @@ def experiment_2(seed: int):
                         if minimum_value_2 < near_threshold_2:
                             continue
 
-                        # analyse reverse combination.
+                        # analyze reverse combination.
                         segment_2 = sequence + segment + anchor
 
                         # check the minimum spacing between the same 10-mer.

@@ -479,7 +479,7 @@ def supp_f19():
 
         points, sub_groups, starts = [], [], []
         for tried_index, child_path in enumerate(child_paths):
-            with open(exp_path + "3/" + child_path) as file:
+            with open(exp_path + "2/" + child_path) as file:
                 # noinspection PyRedeclaration
                 last, former_time, former_blocks, sub_points = None, 0.0, 0.0, []
                 for index, line in enumerate(file.readlines()):
@@ -507,7 +507,7 @@ def supp_f19():
 
         points = array(points)
 
-        # noinspection PyTupleAssignmentBalance
+        # noinspection PyTupleAssignmentBalance,bad-unpacking
         params, _ = curve_fit(function, points[:, 0], points[:, 1])
 
         save_data(file_path=pkg_path + "supp-19.pkl", information=(sub_groups, points, params))
@@ -526,7 +526,7 @@ def supp_f20():
                        "250F50132901B/statistics.csv"]
         values = []
         for tried_index, child_path in enumerate(child_paths):
-            with open(exp_path + "3/" + child_path) as file:
+            with open(exp_path + "2/" + child_path) as file:
                 last, values_1, values_2 = None, [], []
                 for index, line in enumerate(file.readlines()):
                     if index > 0:
@@ -562,7 +562,7 @@ def supp_f20():
 
         values, markers = [[] for _ in range(10)], linspace(0.1, 1.0, 10)
         for tried_index, child_path in enumerate(child_paths):
-            with open(exp_path + "3/" + child_path) as file:
+            with open(exp_path + "2/" + child_path) as file:
                 last, values_1, values_2 = None, [], []
                 for index, line in enumerate(file.readlines()):
                     if index > 0:
@@ -648,7 +648,7 @@ def supp_t02():
                     # noinspection PyUnresolvedReferences
                     points_y += (arange(50) + 1).tolist()
             points_x, points_y = array(points_x, dtype=float), array(points_y, dtype=float)
-            # noinspection PyTupleAssignmentBalance
+            # noinspection PyTupleAssignmentBalance,bad-unpacking
             fitted_params, _ = curve_fit(f=estimate_sequence_copies, xdata=points_x, ydata=points_y, p0=[1.0, 1.0])
             # noinspection PyTypeChecker
             new_points_y = array([estimate_sequence_copies(x, *fitted_params) for x in points_x])
@@ -681,7 +681,7 @@ def supp_t03():
 
         initial_times, initial_speeds = [], []
         for tried_index, child_path in enumerate(child_paths):
-            with open(exp_path + "3/" + child_path) as file:
+            with open(exp_path + "2/" + child_path) as file:
                 # noinspection PyRedeclaration
                 last, former_time, former_blocks, sub_points = None, 0.0, 0.0, []
                 for index, line in enumerate(file.readlines()):

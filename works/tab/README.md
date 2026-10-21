@@ -13,9 +13,6 @@ systematically obtained by Stefan Dittforth, Doruk Ozturk, and Michael Mueller.
 Accordingly, these data were manually transcribed into the LaTeX document.
 
 The information for the three tables included in the Supplementary Information is summarised below.
-For access to any of the following files, please contact 
-the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md).
-
 
 | file name   | MD5                              | file size (bytes) |
 |-------------|----------------------------------|-------------------|

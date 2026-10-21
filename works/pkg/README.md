@@ -24,7 +24,7 @@ the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.
 | main-06.pkl | be1739e5817fe22487c8c27115ffaa17 | 56119             |
 | supp-02.pkl | 6782dc26c24a7cdbd2ec0d29e56f1ea7 | 632               |
 | supp-04.pkl | 0bc6b83a2a570954f7f9e45a5315c8d9 | 3236              |
-| supp-05.pkl | 8bcc8029caa82e9054ba04ae133a9193 | 10079             |
+| supp-05.pkl | e7d8663e3dcb3fb0cac9d1cfaa69164c | 10072             |
 | supp-06.pkl | 3f1e700550a22a75fa81120587f2a3b7 | 4789              |
 | supp-07.pkl | c09357a0d7f41e4cab305ec0bd2531f2 | 13170             |
 | supp-08.pkl | 2fbdfa398c85e3487837bbd4a75952ad | 13170             |

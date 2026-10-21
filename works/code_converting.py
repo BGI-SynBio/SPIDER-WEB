@@ -7,7 +7,6 @@ from typing import Tuple, Generator, Optional
 from sbw import Monitor, m2s, bits_to_number
 
 
-# noinspection PyTypeChecker
 class DNAFountain:
 
     def __init__(self,
@@ -30,6 +29,7 @@ class DNAFountain:
         self.__cdf, self.__success, self.__droplets = None, None, []
         setrecursionlimit(recursion_depth)
 
+    # noinspection bad-return
     def evaluate(self,
                  binary_messages: ndarray,
                  window_size: int,

@@ -340,7 +340,7 @@ def evaluate_correction(seed: int,
         print("Produce 1,000 DNA sequences in each vertex for additional correction evaluation:")
         vertex_number, right_data = len(method.get_params()["vertices"]), {}
         for new_virtuality in range(vertex_number):
-            right_data[new_virtuality] = method.produce(virtuality=virtuality, length=length, diversity=1000,
+            right_data[new_virtuality] = method.produce(virtuality=new_virtuality, length=length, diversity=1000,
                                                         duplicatable=True, palindromable=True, seed=seed)[0]
             monitor(new_virtuality + 1, vertex_number)
         print()
@@ -397,7 +397,7 @@ def evaluate_correction(seed: int,
         print()
 
     if not path.exists(path=raw_path + "supplement-simulation.correction-4.astar.pkl"):
-        right_sequences, records = load_data(file_path=raw_path + "simulation.correction-1.sequences.pkl")[:400], {}
+        right_sequences = load_data(file_path=raw_path + "simulation.correction-1.sequences.pkl")[:400]
 
         records = evaluate_astar_search(accessor=accessor, dna_sequences=right_sequences, virtuality=virtuality,
                                         maximum_error=maximum_error, seed=seed)
@@ -538,7 +538,7 @@ def evaluate_retrieving(seed: int,
                   information=(error_counts, location_counts))
 
     if not path.exists(path=raw_path + "supplement-simulation.retrieving-1.outer-baseline.pkl"):
-        diversity, bit_length, sample_number, fountain_params = 1000, 80, 100, {"delta": 0.001, "cdist": 0.025}
+        diversity, address_length, bit_length, sample_number, skipping_range = 1000, 20, 80, 100, 100
         loss_rates, redundant_rates = linspace(0.00, 0.10, 11), linspace(0.01, 0.50)
 
         data_groups, monitor = [], Monitor()
@@ -555,14 +555,14 @@ def evaluate_retrieving(seed: int,
                 loss_number = int(loss_rate * (diversity * (1 + redundant_rate)))
                 for data_index, expected_messages in enumerate(data_groups):
                     stored_messages = method.insert(binary_messages=expected_messages.copy(),
-                                                    address_length=20, skipping_range=100)
+                                                    address_length=address_length, skipping_range=skipping_range)
                     if loss_number > 0:
                         removed_indices = random.choice(len(expected_messages), size=loss_number, replace=False)
                         practical_messages = delete(stored_messages, removed_indices, axis=0)
                     else:
                         practical_messages = stored_messages.copy()
-                    retrieved_data = method.repair(binary_messages=practical_messages, address_length=20,
-                                                   original_number=diversity, skipping_range=100)
+                    retrieved_data = method.repair(binary_messages=practical_messages, address_length=address_length,
+                                                   original_number=diversity, skipping_range=skipping_range)
                     # noinspection PyUnresolvedReferences
                     cases[data_index] = sum(all(retrieved_data == expected_messages, axis=1)) / float(diversity)
                 monitor(current + 1, 550,
@@ -572,6 +572,7 @@ def evaluate_retrieving(seed: int,
         print()
 
         records_2, method, current = {}, OuterCode(method="reed-solomon"), 0
+        block_size = 100
         print("Evaluate the basic performance of reed-solomon code without any inner code:")
         for redundant_rate in redundant_rates:
             method.set_params(redundancy=redundant_rate)
@@ -580,14 +581,16 @@ def evaluate_retrieving(seed: int,
                 loss_number = int(loss_rate * (diversity * (1 + redundant_rate)))
                 for data_index, expected_messages in enumerate(data_groups):
                     stored_messages = method.insert(binary_messages=expected_messages.copy(),
-                                                    address_length=20, skipping_range=100, block_size=100)
+                                                    address_length=address_length, skipping_range=skipping_range,
+                                                    block_size=block_size)
                     if loss_number > 0:
                         removed_indices = random.choice(len(expected_messages), size=loss_number, replace=False)
                         practical_messages = delete(stored_messages, removed_indices, axis=0)
                     else:
                         practical_messages = stored_messages.copy()
-                    retrieved_data = method.repair(binary_messages=practical_messages, address_length=20,
-                                                   original_number=diversity, skipping_range=100, block_size=100)
+                    retrieved_data = method.repair(binary_messages=practical_messages, address_length=address_length,
+                                                   original_number=diversity, skipping_range=skipping_range,
+                                                   block_size=block_size)
                     # noinspection PyUnresolvedReferences
                     cases[data_index] = sum(all(retrieved_data == expected_messages, axis=1)) / float(diversity)
                 monitor(current + 1, 550,
@@ -597,6 +600,7 @@ def evaluate_retrieving(seed: int,
         print()
 
         records_3, method, current = {}, OuterCode(method="fountain"), 0
+        fountain_params = {"delta": 0.001, "cdist": 0.025}
         print("Evaluate the basic performance of fountain code without any inner code:")
         for redundant_rate in redundant_rates:
             method.set_params(redundancy=redundant_rate, parameters=fountain_params)
@@ -605,14 +609,14 @@ def evaluate_retrieving(seed: int,
                 loss_number = int(loss_rate * (diversity * (1 + redundant_rate)))
                 for data_index, expected_messages in enumerate(data_groups):
                     stored_messages = method.insert(binary_messages=expected_messages.copy(),
-                                                    address_length=20, skipping_range=100)
+                                                    address_length=address_length, skipping_range=skipping_range)
                     if loss_number > 0:
                         removed_indices = random.choice(len(expected_messages), size=loss_number, replace=False)
                         practical_messages = delete(stored_messages, removed_indices, axis=0)
                     else:
                         practical_messages = stored_messages.copy()
-                    retrieved_data = method.repair(binary_messages=practical_messages, address_length=20,
-                                                   original_number=diversity, skipping_range=100)
+                    retrieved_data = method.repair(binary_messages=practical_messages, address_length=address_length,
+                                                   original_number=diversity, skipping_range=skipping_range)
                     # noinspection PyUnresolvedReferences
                     cases[data_index] = sum(all(retrieved_data == expected_messages, axis=1)) / float(diversity)
                 monitor(current + 1, 550,
@@ -625,7 +629,7 @@ def evaluate_retrieving(seed: int,
                   information={"xor": records_1, "reed-solomon": records_2, "fountain": records_3})
 
     if not path.exists(path=raw_path + "supplement-simulation.retrieving-2.outer-spider.pkl"):
-        diversity, bit_length, sample_number, fountain_params = 1000, 80, 100, {"delta": 0.001, "cdist": 0.025}
+        diversity, address_length, bit_length, sample_number, skipping_range = 1000, 20, 80, 100, 100
         loss_rates, redundant_rates = linspace(0.00, 0.10, 11), linspace(0.01, 0.50)
         inner_code = FastTranscoder(accessor=load_data(raw_path + "generation-2.special-case.pkl")[0])
 
@@ -643,8 +647,8 @@ def evaluate_retrieving(seed: int,
                 loss_number = int(loss_rate * (diversity * (1 + redundant_rate)))
                 for data_index, expected_messages in enumerate(data_groups):
                     stored_messages = outer_code.insert(binary_messages=expected_messages,
-                                                        address_length=20, skipping_range=100)
-                    sequences = inner_code.encode(messages=stored_messages, virtuality=virtuality, seed=seed)
+                                                        address_length=address_length, skipping_range=skipping_range)
+                    sequences, _ = inner_code.encode(messages=stored_messages, virtuality=virtuality, seed=seed)
 
                     if loss_number > 0:
                         removed_indices = random.choice(len(expected_messages), size=loss_number, replace=False)
@@ -652,14 +656,12 @@ def evaluate_retrieving(seed: int,
                     else:
                         practical_sequences = deepcopy(sequences)
 
-                    virtualities = ones(shape=(len(practical_sequences),)) * virtuality
-                    # noinspection PyTypeChecker
+                    virtualities = ones(shape=(len(practical_sequences),), dtype=int) * virtuality
                     used_messages = inner_code.decode(sequences=practical_sequences, virtualities=virtualities,
-                                                      length=120)
+                                                      length=address_length + bit_length)
 
-                    retrieved_data = outer_code.repair(binary_messages=used_messages, address_length=20,
-                                                       original_number=diversity, skipping_range=100)
-                    # noinspection PyUnresolvedReferences
+                    retrieved_data = outer_code.repair(binary_messages=used_messages, address_length=address_length,
+                                                       original_number=diversity, skipping_range=skipping_range)
                     cases[data_index] = sum(all(retrieved_data == expected_messages, axis=1)) / float(diversity)
                 monitor(current + 1, 550,
                         {"set": "%.2f" % redundant_rate, "loss": "%.2f" % loss_rate, "obtain": "%.3f" % mean(cases)})
@@ -668,6 +670,7 @@ def evaluate_retrieving(seed: int,
         print()
 
         records_2, outer_code, current = {}, OuterCode(method="reed-solomon"), 0
+        block_size = 100
         print("Evaluate the performance of reed-solomon code with SPIDER-WEB:")
         for redundant_rate in redundant_rates:
             outer_code.set_params(redundancy=redundant_rate)
@@ -676,8 +679,9 @@ def evaluate_retrieving(seed: int,
                 loss_number = int(loss_rate * (diversity * (1 + redundant_rate)))
                 for data_index, expected_messages in enumerate(data_groups):
                     stored_messages = outer_code.insert(binary_messages=expected_messages,
-                                                        address_length=20, skipping_range=100, block_size=100)
-                    sequences = inner_code.encode(messages=stored_messages, virtuality=virtuality, seed=seed)
+                                                        address_length=address_length, skipping_range=skipping_range,
+                                                        block_size=block_size)
+                    sequences, _ = inner_code.encode(messages=stored_messages, virtuality=virtuality, seed=seed)
 
                     if loss_number > 0:
                         removed_indices = random.choice(len(expected_messages), size=loss_number, replace=False)
@@ -685,14 +689,13 @@ def evaluate_retrieving(seed: int,
                     else:
                         practical_sequences = deepcopy(sequences)
 
-                    virtualities = ones(shape=(len(practical_sequences),)) * virtuality
-                    # noinspection PyTypeChecker
+                    virtualities = ones(shape=(len(practical_sequences),), dtype=int) * virtuality
                     used_messages = inner_code.decode(sequences=practical_sequences, virtualities=virtualities,
-                                                      length=120)
+                                                      length=address_length + bit_length)
 
-                    retrieved_data = outer_code.repair(binary_messages=used_messages, address_length=20,
-                                                       original_number=diversity, skipping_range=100, block_size=100)
-                    # noinspection PyUnresolvedReferences
+                    retrieved_data = outer_code.repair(binary_messages=used_messages, address_length=address_length,
+                                                       original_number=diversity, skipping_range=skipping_range,
+                                                       block_size=block_size)
                     cases[data_index] = sum(all(retrieved_data == expected_messages, axis=1)) / float(diversity)
                 monitor(current + 1, 550,
                         {"set": "%.2f" % redundant_rate, "loss": "%.2f" % loss_rate, "obtain": "%.3f" % mean(cases)})
@@ -701,6 +704,7 @@ def evaluate_retrieving(seed: int,
         print()
 
         records_3, outer_code, current = {}, OuterCode(method="fountain"), 0
+        fountain_params = {"delta": 0.001, "cdist": 0.025}
         print("Evaluate the performance of fountain code with SPIDER-WEB:")
         for redundant_rate in redundant_rates:
             outer_code.set_params(redundancy=redundant_rate, parameters=fountain_params)
@@ -709,8 +713,8 @@ def evaluate_retrieving(seed: int,
                 loss_number = int(loss_rate * (diversity * (1 + redundant_rate)))
                 for data_index, expected_messages in enumerate(data_groups):
                     stored_messages = outer_code.insert(binary_messages=expected_messages,
-                                                        address_length=20, skipping_range=100)
-                    sequences = inner_code.encode(messages=stored_messages, virtuality=virtuality, seed=seed)
+                                                        address_length=address_length, skipping_range=skipping_range)
+                    sequences, _ = inner_code.encode(messages=stored_messages, virtuality=virtuality, seed=seed)
 
                     if loss_number > 0:
                         removed_indices = random.choice(len(expected_messages), size=loss_number, replace=False)
@@ -718,14 +722,12 @@ def evaluate_retrieving(seed: int,
                     else:
                         practical_sequences = deepcopy(sequences)
 
-                    virtualities = ones(shape=(len(practical_sequences),)) * virtuality
-                    # noinspection PyTypeChecker
+                    virtualities = ones(shape=(len(practical_sequences),), dtype=int) * virtuality
                     used_messages = inner_code.decode(sequences=practical_sequences, virtualities=virtualities,
-                                                      length=120)
+                                                      length=address_length + bit_length)
 
-                    retrieved_data = outer_code.repair(binary_messages=used_messages, address_length=20,
-                                                       original_number=diversity, skipping_range=100)
-                    # noinspection PyUnresolvedReferences
+                    retrieved_data = outer_code.repair(binary_messages=used_messages, address_length=address_length,
+                                                       original_number=diversity, skipping_range=skipping_range)
                     cases[data_index] = sum(all(retrieved_data == expected_messages, axis=1)) / float(diversity)
                 monitor(current + 1, 550,
                         {"set": "%.2f" % redundant_rate, "loss": "%.2f" % loss_rate, "obtain": "%.3f" % mean(cases)})

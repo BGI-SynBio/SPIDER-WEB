@@ -51,9 +51,11 @@ def main_f01():
     for x_former, x_latter in zip(x_locations[:-1], x_locations[1:]):
         for y_former, y_latter in zip(y_locations[:-1], y_locations[1:]):
             if random.random() < 0.6:
+                # noinspection bad-argument-type
                 pyplot.fill_between([x_former + 0.02, x_latter - 0.02], y_former + 0.05, y_latter - 0.05,
                                     ec="k", fc="w", lw=0.5)
             else:
+                # noinspection bad-argument-type
                 pyplot.fill_between([x_former + 0.02, x_latter - 0.02], y_former + 0.05, y_latter - 0.05,
                                     ec="k", fc="gray", lw=0.5)
     random.seed()
@@ -68,13 +70,17 @@ def main_f01():
         if 0 < index < 10:
             pyplot.vlines(location + interval / 2, center_b, center_b + 0.19, lw=0.75, ls="--", color="k", zorder=1)
             if current != "T":
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b + 0.19 - 0.006, current,
                             color="k", va="center", ha="center", fontsize=7, zorder=3)
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b - 0.006, current,
                             color="k", va="center", ha="center", fontsize=7, zorder=3)
             else:
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b + 0.19 - 0.006, current,
                             color="w", va="center", ha="center", fontsize=7, zorder=3)
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b - 0.006, current,
                             color="w", va="center", ha="center", fontsize=7, zorder=3)
             pyplot.fill_between([location, location + interval], center_b + 0.19 - 0.03, center_b + 0.19 + 0.03,
@@ -83,18 +89,22 @@ def main_f01():
                                 fc=color_groups[0][{"A": 0, "C": 1, "G": 2, "T": 3}[current]], lw=0, zorder=2)
         elif index == 0:
             if current != "T":
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b + 0.19 - 0.006, current,
                             color="k", va="center", ha="center", fontsize=7, zorder=3)
             else:
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b + 0.19 - 0.006, current,
                             color="w", va="center", ha="center", fontsize=7, zorder=3)
             pyplot.fill_between([location, location + interval], center_b + 0.19 - 0.03, center_b + 0.19 + 0.03,
                                 fc=color_groups[0][{"A": 0, "C": 1, "G": 2, "T": 3}[current]], lw=0, zorder=2)
         else:
             if current != "T":
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b - 0.006, current,
                             color="k", va="center", ha="center", fontsize=7, zorder=3)
             else:
+                # noinspection bad-argument-type
                 pyplot.text(location + interval / 2, center_b - 0.006, current,
                             color="w", va="center", ha="center", fontsize=7, zorder=3)
             pyplot.fill_between([location, location + interval], center_b - 0.03, center_b + 0.03,

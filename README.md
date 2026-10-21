@@ -2,11 +2,10 @@
 <img src="./logo.svg" alt="SPIDER-WEB" title="SPIDER-WEB" width="100%"/>
 </p>
 
-# SPIDER-WEB enables a real-time data retrieval of DNA-based data storage
+# Real-time data retrieval of DNA-based data storage with SPIDER-WEB 
 
-[![CircleCI](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main.svg?style=shield)](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main)
-[![PythonVersion](https://img.shields.io/badge/python-3.10-blue)](https://img.shields.io/badge/python-3.10-blue)
-[![Licence](https://img.shields.io/badge/Licence-BGI_Research_v1-orange.svg)](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/LICENSE.pdf)
+[![CircleCI](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main.svg?style=shield)](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main)[![PythonVersion](https://img.shields.io/badge/python-3.10-blue)](https://img.shields.io/badge/python-3.10-blue)
+[![Licence](https://img.shields.io/badge/Licence-BGI_Research_Open_Source_v1-orange.svg)](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/LICENSE.pdf)
 [![Publication](https://img.shields.io/badge/Publication-Nature_Computational_Science-red.svg)]()
 
 Data retrieval efficiency remains one of the key challenges 
@@ -101,17 +100,13 @@ between the data elements and software components.
 This evidence chain is intended to help users identify which repository components are associated with 
 each reported result and to inspect how computational procedures connect starting materials to final reported outputs. 
 
-[//]: # (For more information, please refer to )
-
-[//]: # ([`evidence.yml`]&#40;https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/evidence.yml&#41;.)
-
 ## Artificial intelligence use restriction
 
 No license is granted to use any Repository Content, 
 in whole or in part, for the purpose of developing, training, fine-tuning, validating, testing, benchmarking, 
 evaluating, improving, or otherwise enabling any artificial intelligence system, 
 machine learning system, large language model, foundation model, generative model, 
-code generation system, embedding model, retrieval-augmented generation system, or related automated model or system.
+code generation system, embedding model, retrieval-augmented generation system, or related automated models.
 
 This restriction includes, without limitation, the use of Repository Content for dataset aggregation, 
 corpus construction, embedding generation, synthetic data generation, model pre-training, model fine-tuning, 

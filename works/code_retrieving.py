@@ -35,6 +35,7 @@ class CountHeap(Heap):
         else:
             self.__heap[sequence] = 1
 
+    # noinspection method-overriding
     def pop_all(self,
                 top: Optional[int] = None) \
             -> set:
@@ -104,6 +105,7 @@ class SequenceHeap(Heap):
         else:
             self.__heap[used_count] = {sequence}
 
+    # noinspection method-overriding
     def pop_all(self,
                 top: Optional[int] = None) \
             -> set:
@@ -120,10 +122,10 @@ class SequenceHeap(Heap):
 
         for count in sorted(self.__heap.keys(), reverse=True):
             if len(self.__heap[count]) + len(retrieved_sequences) < top:
-                retrieved_sequences += list(self.__heap[count])
+                retrieved_sequences.update(list(self.__heap[count]))
             else:
                 # noinspection PyUnresolvedReferences
-                retrieved_sequences += list(self.__heap[count])[:top - len(retrieved_sequences)]
+                retrieved_sequences.update(list(self.__heap[count])[:top - len(retrieved_sequences)])
                 break
 
         return retrieved_sequences
@@ -284,6 +286,7 @@ def conventional_retrieval_process(raw_sequences: list,
     last_time = datetime.now()
 
     params = raw_path + " " + o_folder + " " + t_folder + " --min-seq-id " + str(similarity) + " --threads 1 -v 0"
+    # noinspection deprecation
     system("mmseqs easy-cluster " + params)  # used by Composite-Hedges-Nanopores
 
     clusters = {}
@@ -307,10 +310,12 @@ def conventional_retrieval_process(raw_sequences: list,
 
             if default:  # more accurate but too slow (used by Composite-Hedges-Nanopores)
                 params = "-align " + clustered_path + " -output " + aligned_path + " --threads 1 -quiet"
+                # noinspection deprecation
                 system("muscle " + params)
 
             else:  # faster but less accurate.
                 params = "-i " + clustered_path + " -o " + aligned_path + " --threads 1"
+                # noinspection deprecation
                 system("clustalo " + params)
 
             candidate_set = []
@@ -709,12 +714,14 @@ def obtain_raw_sequences(compressed_file_paths: dict,
     cutadapt_params = ["-g", forward_primer, "-G", reverse_primer, "--discard-untrimmed", "--quiet",
                        "-o", tmp_path + "trimmed-sub-1.f.fastq", "-p", tmp_path + "trimmed-sub-2.r.fastq",
                        tmp_path + "source-1.fastq", tmp_path + "source-2.fastq"]
+    # noinspection deprecation
     system("cutadapt " + " ".join(cutadapt_params))
     if verbose:
         monitor(3, 7)
     cutadapt_params = ["-g", reverse_primer, "-G", forward_primer, "--discard-untrimmed", "--quiet",
                        "-o", tmp_path + "trimmed-sub-1.r.fastq", "-p", tmp_path + "trimmed-sub-2.f.fastq",
                        tmp_path + "source-1.fastq", tmp_path + "source-2.fastq"]
+    # noinspection deprecation
     system("cutadapt " + " ".join(cutadapt_params))
     if verbose:
         monitor(4, 7)
@@ -772,6 +779,7 @@ def obtain_raw_sequences(compressed_file_paths: dict,
                           "-reverse", tmp_path + "seq_R2.fastq",
                           "-fastqout", tmp_path + "merged_seq.fastq",
                           "-fastq_maxns 0", "> NUL 2>&1"]
+        # noinspection deprecation
         system("usearch " + " ".join(usearch_params))
         try:
             if path.exists(tmp_path + "merged_seq.fastq"):

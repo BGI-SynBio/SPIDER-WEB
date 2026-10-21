@@ -27,4 +27,4 @@ the demonstration experiments presented in Fig. 6 were conducted on a separate s
 equipped with a 14th Gen Intel® Core™ i9-14900HX CPU and 32 GB DDR5 RAM.
 All experiments and simulations that were not used for runtime-sensitive reporting 
 were conducted across multiple computational environments, 
-including personal workstations, the KAUST IBEX high-performance cluster, and the BGI cloud infrastructure.
+including workstations, the KAUST IBEX high-performance cluster, and the BGI cloud infrastructure.

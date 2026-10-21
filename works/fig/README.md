@@ -12,8 +12,6 @@ Therefore, the generated figure outputs in this folder do not include the compon
 
 The information for the six figures included in the main text and 
 the twenty figures included in the Supplementary Information is summarised below.
-For access to any of the following files, please contact 
-the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md).
 
 | file name   | MD5                              | file size (bytes) |
 |-------------|----------------------------------|-------------------|
@@ -27,7 +25,7 @@ the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.
 | supp-02.pdf | eac2baabd1582a5a6789f4691c6418bf | 22042             |
 | supp-03.pdf | 6cbf23439189a82f50b874a19a92c1ab | 23935             |
 | supp-04.pdf | 0ea68d5c141b4cc47786b129dd7d3f1f | 63784             |
-| supp-05.pdf | 227a1ba905349482434c0adef04d188c | 24370             |
+| supp-05.pdf | fc623478c59b4e5d78a83f003928d58b | 24317             |
 | supp-06.pdf | ef4fc1624cb82ffdc2e3a4cdc5cf8c52 | 31286             |
 | supp-07.pdf | f2548cb9db925a2c03b3ea3ff4fdc75b | 27853             |
 | supp-08.pdf | 7bd6cd364ff21141403d713c0f4cec38 | 28731             |

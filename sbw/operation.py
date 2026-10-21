@@ -1,6 +1,6 @@
 from numpy import ndarray, array, zeros, ones, zeros_like, arange, random, concatenate, expand_dims, hstack
 from numpy import count_nonzero, nonzero, sum, min, max, log2, ceil, all, where, uint8
-from typing import Tuple, Optional
+from typing import List, Tuple, Optional
 
 from sbw.spiderweb import count_out_degrees
 from sbw.underprop import Monitor, m2s, i2m
@@ -13,7 +13,7 @@ def merge(virtual_vertices: ndarray,
           middle_primer: str,
           latter_primer: str,
           verbose: bool = False) \
-        -> list:
+        -> List[str]:
     """
     Merge primers, segments of virtual vertices, and payloads.
 
@@ -39,7 +39,7 @@ def merge(virtual_vertices: ndarray,
     :type verbose: bool
 
     :return: complete synthesised DNA sequences.
-    :rtype: list
+    :rtype: List[str]
 
     .. note::
         To ensure decoding efficiency, we suggest that

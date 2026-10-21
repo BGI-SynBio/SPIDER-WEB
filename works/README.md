@@ -85,7 +85,7 @@ we recommend installing the replicability-oriented Conda environment defined in
 
 ### Download, place, and verify experimental data
 
-If users intend to replicate the results related to Fig. 3, Fig. 4, Fig. 6, 
+If users intend to replicate the results related to Fig. 3, Fig. 4, and Fig. 6, 
 or other wet-lab experiment-related analyses reported in the corresponding publication, 
 they should download the experimental data required for their intended replicability scope and 
 place the files under the corresponding subfolders in the local `exp` folder.

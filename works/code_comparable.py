@@ -330,6 +330,7 @@ def find_consensus_sequences(raw_sequences: List[str],
         for index, sequence in enumerate(raw_sequences):
             file.write(">" + str(index) + "\n")
             file.write(sequence + "\n")
+    # noinspection deprecation
     system("mmseqs easy-cluster " + o_folder + "origin.fasta" + " " + o_folder + " " + t_folder + " "
            + "--min-seq-id " + str(similarity) + " -c " + str(coverage)
            + " --cov-mode 0 --rescore-mode 3 --threads 1 > /dev/null 2>&1")
@@ -350,6 +351,7 @@ def find_consensus_sequences(raw_sequences: List[str],
                     file.write(">" + str(sequence_index) + "\n")
                     file.write(raw_sequences[sequence_index] + "\n")
             # use MUSCLE5 to do the alignment of sub-clusters.
+            # noinspection deprecation
             system("muscle -align " + clustered_path + " -output " + aligned_path + " --threads 1 > /dev/null 2>&1")
             assembled_sequences = [str(info.seq) for info in SeqIO.parse(aligned_path, "fasta")]
 

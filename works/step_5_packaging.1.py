@@ -47,7 +47,7 @@ def main_f01():
                     # noinspection PyUnresolvedReferences
                     points_y += (arange(50) + 1).tolist()
             points_x, points_y = array(points_x, dtype=float), array(points_y, dtype=float)
-            # noinspection PyTupleAssignmentBalance
+            # noinspection PyTupleAssignmentBalance,bad-unpacking
             fitted_params, _ = curve_fit(f=estimate_sequence_copies, xdata=points_x, ydata=points_y, p0=[1.0, 1.0])
             fitted_param_group[error_index] = fitted_params
         # based on the speed information collected above.
@@ -193,7 +193,7 @@ def main_f02():
                     points_y += (arange(50) + 1).tolist()
             points_x, points_y = array(points_x, dtype=float), array(points_y, dtype=float)
 
-            # noinspection PyTupleAssignmentBalance
+            # noinspection PyTupleAssignmentBalance,bad-unpacking
             fitted_params, _ = curve_fit(f=estimate_sequence_copies, xdata=points_x, ydata=points_y, p0=[1.0, 1.0])
             sizes = linspace(1, 6, 101)
             # 0.724 is the practical information density, calculating when the special coding digraph is generated.
@@ -365,14 +365,14 @@ def main_f04():
 
         values_1 = (log10([10, 100, 1000, 10000, 100000]), log10(our_data_1), log10(cov_data_1))
 
-        # noinspection PyTupleAssignmentBalance
+        # noinspection PyTupleAssignmentBalance,bad-unpacking
         fitted_params_our_1, _ = curve_fit(f=estimate_runtime_1, xdata=values_1[0], ydata=values_1[1])
         obtained_values = estimate_runtime_1(values_1[0], *fitted_params_our_1)
         residual_sum_of_squares = sum((values_1[1] - obtained_values) ** 2)
         total_sum_of_squares = sum((values_1[1] - mean(values_1[1])) ** 2)
         fit_info_our_1 = 1 - (residual_sum_of_squares / total_sum_of_squares)
 
-        # noinspection PyTupleAssignmentBalance
+        # noinspection PyTupleAssignmentBalance,bad-unpacking
         fitted_params_cov_1, _ = curve_fit(f=estimate_runtime_2, xdata=values_1[0], ydata=values_1[2])
         obtained_values = estimate_runtime_2(values_1[0], *fitted_params_cov_1)
         residual_sum_of_squares = sum((values_1[2] - obtained_values) ** 2)
@@ -392,14 +392,14 @@ def main_f04():
 
         values_6 = (log10([10, 100, 1000, 10000, 100000]), log10(our_data_6), log10(cov_data_6))
 
-        # noinspection PyTupleAssignmentBalance
+        # noinspection PyTupleAssignmentBalance,bad-unpacking
         fitted_params_our_6, _ = curve_fit(f=estimate_runtime_1, xdata=values_6[0], ydata=values_6[1])
         obtained_values = estimate_runtime_1(values_6[0], *fitted_params_our_6)
         residual_sum_of_squares = sum((values_6[1] - obtained_values) ** 2)
         total_sum_of_squares = sum((values_6[1] - mean(values_6[1])) ** 2)
         fit_info_our_6 = 1 - (residual_sum_of_squares / total_sum_of_squares)
 
-        # noinspection PyTupleAssignmentBalance
+        # noinspection PyTupleAssignmentBalance,bad-unpacking
         fitted_params_cov_6, _ = curve_fit(f=estimate_runtime_2, xdata=values_6[0], ydata=values_6[2])
         obtained_values = estimate_runtime_2(values_6[0], *fitted_params_cov_6)
         residual_sum_of_squares = sum((values_6[2] - obtained_values) ** 2)
@@ -474,7 +474,7 @@ def main_f05():
                     points_y += (arange(50) + 1).tolist()
             points_x, points_y = array(points_x, dtype=float), array(points_y, dtype=float)
 
-            # noinspection PyTupleAssignmentBalance
+            # noinspection PyTupleAssignmentBalance,bad-unpacking
             fitted_params, _ = curve_fit(f=estimate_sequence_copies, xdata=points_x, ydata=points_y, p0=[1.0, 1.0])
             fitted_param_group[error_index] = fitted_params
 
@@ -696,7 +696,7 @@ def main_f06():
 
         processes = {}
         for tried_index, child_path in enumerate(child_paths):
-            with open(exp_path + "3/" + child_path) as file:
+            with open(exp_path + "2/" + child_path) as file:
                 last, collection = None, []
                 for index, line in enumerate(file.readlines()):
                     if index > 0:
@@ -714,7 +714,7 @@ def main_f06():
 
         bounds = {"50%": [[], []], "90%": [[], []], "99%": [[], []], "100%": [[], []]}
         for tried_index, child_path in enumerate(child_paths):
-            with open(exp_path + "3/" + child_path) as file:
+            with open(exp_path + "2/" + child_path) as file:
                 last, collection = None, []
                 for index, line in enumerate(file.readlines()):
                     if index > 0:
