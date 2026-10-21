@@ -153,7 +153,7 @@ Here is the BibTeX entry:
 
 ````
 @article{zhang2026spider,
-  title={SPIDER-WEB enables a real-time data retrieval of DNA-based data storage},
+  title={Real-time data retrieval of DNA-based data storage with SPIDER-WEB},
   author={Zhang, Haoling and Lin, Xiaoyi and Lan, Zhaojun and Xu, Demin and Wang, Wen and Wang, Yun and Han, Tao and Deng, Ziqing and Wang, Yadong and Tegn\'{e}r, Jesper and Xu, Xun and Ping, Zhi and Zhang, Yiwei and Liu, Bo and Shen, Yue},
   journal={Nature Computational Science},
   volume={X},
