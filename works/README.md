@@ -108,7 +108,7 @@ python step_2_validate.py
 The expected execution times for these steps are provided in 
 [`steps.txt`](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/works/exp/steps.txt).
 
-### Download, place, and verify intermediate outputs
+### Download, place, and verify intermediate raw data
 
 If users intend to replicate the pipelines in `step_*.py`, 
 they may consider downloading the provided intermediate raw data before running the replicability workflow. 

@@ -75,3 +75,10 @@ including the file name, MD5 checksum, and file size in bytes.
 | 47         | supplement-simulation.retrieving-8.web-evaluation.pkl      | cd06c96a64ebdea45af707083c49a713 | 3855              |
 | 48         | supplement-experiment.retrieving-1.default.pkl             | 4ced9197ae2da15ded2a6378a97b42aa | 5204              |
 | 49         | supplement-experiment.retrieving-2.error-profile.pkl       | 313738291878b3718841ef29a6cde7df | 133487314         |
+
+Notably, the provided MD5 checksums are intended solely to verify the integrity of downloaded files.
+If regenerated intermediate output files differ from their downloaded counterparts in MD5 checksum or file size, 
+users are advised to load both files and compare their contents directly.
+During our replication tests, we observed that certain dictionary-based data structures 
+may yield different MD5 checksums when serialised using Python's pickle module, even when their contents are identical.
+Therefore, differences in MD5 checksums or file sizes do not necessarily indicate differences in the underlying data.

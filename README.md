@@ -144,22 +144,3 @@ Such materials may include records relevant to priority, inventorship, ownership
 Where necessary and under appropriate conditions, 
 we are willing to provide relevant empirical records to substantiate the development history of this work 
 and to support legitimate intellectual-property and priority-protection interests.
-
-## Citation
-
-If this repository is helpful to your research, or if you use this repository in your work, 
-please consider citing the corresponding publication.
-Here is the BibTeX entry:
-
-````
-@article{zhang2026spider,
-  title={Real-time data retrieval of DNA-based data storage with SPIDER-WEB},
-  author={Zhang, Haoling and Lin, Xiaoyi and Lan, Zhaojun and Xu, Demin and Wang, Wen and Wang, Yun and Han, Tao and Deng, Ziqing and Wang, Yadong and Tegn\'{e}r, Jesper and Xu, Xun and Ping, Zhi and Zhang, Yiwei and Liu, Bo and Shen, Yue},
-  journal={Nature Computational Science},
-  volume={X},
-  number={X},
-  pages={XXX--XXX},
-  year={2026},
-  publisher={Nature Publishing Group}
-}
-````
