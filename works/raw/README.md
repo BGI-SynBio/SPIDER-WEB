@@ -30,7 +30,7 @@ including the file name, MD5 checksum, and file size in bytes.
 | 2          | generation-2.special-case.pkl                              | 971b670d3d8b6265ef442b6bbdef68c3 | 464973850         |
 | 3          | simulation.conversion-1.theory.pkl                         | 44cc64614ea64d9ca72794e0c55f0b4f | 346393517         |
 | 4          | simulation.conversion-2.graphs.zip                         | 8998162aa5f5419f60a417d963a3f399 | 3383360793        |
-| 5          | simulation.conversion-3.tradeoffs.pkl                      | 64c5385b685ec4f8b1b207a16aa6deaf | 46546             |
+| 5          | simulation.conversion-3.tradeoffs.pkl                      | 456d1858d436ea2dd78d766426850a61 | 78440             |
 | 6          | simulation.conversion-4.speeds.pkl                         | 2bc5b87132facdac175dc5983b8d410d | 5485              |
 | 7          | simulation.correction-1.sequences.pkl                      | 069c779eed6e82b052e73a44b176476a | 203029869         |
 | 8          | simulation.correction-2.single.pkl                         | 9efcd054b6d7cce6151ea2bd015713ad | 10847209965       |

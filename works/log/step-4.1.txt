@@ -1,5 +1,5 @@
 Calculate information density of DNA fountain under different constraints:
-|████████████████████|100% (600/600) used 0002:21:37.
+|████████████████████|100% (1200/1200) used 0003:12:17.
 
 +------------------------+------------+--------------+---------------------+
 | homopolymer run-length | GC content | success rate | information density |

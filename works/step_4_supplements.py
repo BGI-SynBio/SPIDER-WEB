@@ -112,12 +112,12 @@ def evaluate_conversion(seed: int,
             file.extractall(tmp_path)
 
         print("Quantify the impact of eliminating ambiguity on information density:")
-        monitor, process = Monitor(), 0
+        monitor, process, required_number = Monitor(), 0, 100
 
         records, window_length, degrees = {"random": [], "basic": []}, 10, array([1, 2, 3, 4])
         for index in range(10):
             for number in range(1, 101):
-                accessor_path = tmp_path + str(index) + "." + str(number).zfill(3) + ".npy"
+                accessor_path = tmp_path + str(index) + "." + str(number).zfill(len(str(required_number))) + ".npy"
                 accessor = load_data(file_path=accessor_path)
 
                 accessor_1, _ = select_component(entire_accessor=accessor, expected_length=200)
@@ -161,12 +161,12 @@ def evaluate_conversion(seed: int,
             file.extractall(tmp_path)
 
         print("Quantify the impact of eliminating ambiguity on decoding speed:")
-        monitor, process, sample_number = Monitor(), 0, 10000
+        monitor, process, sample_number, required_number = Monitor(), 0, 10000, 100
 
         records, window_length, degrees = {"random": [], "basic": []}, 10, array([1, 2, 3, 4])
         for index in range(10):
             for number in range(1, 101):
-                accessor_path = tmp_path + str(index) + "." + str(number).zfill(3) + ".npy"
+                accessor_path = tmp_path + str(index) + "." + str(number).zfill(len(str(required_number))) + ".npy"
                 accessor = load_data(file_path=accessor_path)
                 accessor_1, _ = select_component(entire_accessor=accessor, expected_length=200)
                 out_statistics = count_out_degrees(accessor_1)
@@ -739,8 +739,8 @@ def evaluate_retrieving(seed: int,
                   information={"xor": records_1, "reed-solomon": records_2, "fountain": records_3})
 
     if not path.exists(path=raw_path + "supplement-simulation.retrieving-3.outer-preparation.pkl"):
-        diversity, bit_length, sample_number, redundant_rates = 1000, 80, 10, linspace(0.01, 0.50)
-        fountain_params = {"delta": 0.001, "cdist": 0.025}
+        diversity, address_length, bit_length, sample_number, sequence_length = 1000, 20, 80, 10, 200
+        skipping_range, redundant_rates = 100, linspace(0.01, 0.50)
 
         inner_code, monitor = SpiderWeb(accessor=load_data(raw_path + "generation-2.special-case.pkl")[0]), Monitor()
 
@@ -750,14 +750,15 @@ def evaluate_retrieving(seed: int,
             original_messages = random.randint(0, 2, size=(diversity, bit_length))
             data_groups.append(original_messages)
 
-        records_0, current, addresses = {}, 0, i2m(integers=arange(1000), length=20, base_size=2)
+        records_0, current, addresses = {}, 0, i2m(integers=arange(diversity), length=address_length, base_size=2)
         print("Generate SPIDER-WEB:")
         for data_index, payloads in enumerate(data_groups):
             sequences = []
             for binary_message in concatenate((addresses, payloads), axis=1):
-                sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality, length_fixed=200))
+                sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality,
+                                                   length_fixed=sequence_length))
             records_0[data_index] = sequences
-            monitor(current + 1, 10)
+            monitor(current + 1, sample_number)
             current += 1
 
         records_1, outer_code, current = {}, OuterCode(method="xor"), 0
@@ -765,63 +766,71 @@ def evaluate_retrieving(seed: int,
         for redundant_rate in redundant_rates:
             outer_code.set_params(redundancy=redundant_rate)
             for data_index, payloads in enumerate(data_groups):
-                stored_messages = outer_code.insert(binary_messages=payloads, address_length=20, skipping_range=100)
+                stored_messages = outer_code.insert(binary_messages=payloads, address_length=address_length,
+                                                    skipping_range=skipping_range)
                 sequences = []
                 for binary_message in stored_messages:
-                    sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality, length_fixed=200))
+                    sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality,
+                                                       length_fixed=sequence_length))
                 records_1[(data_index, str(int(redundant_rate * 100 + 0.5)) + "%")] = sequences
-                monitor(current + 1, 500)
+                monitor(current + 1, sample_number * len(redundant_rates))
                 current += 1
         print()
 
         records_2, outer_code, current = {}, OuterCode(method="reed-solomon"), 0
+        block_size = 100
         print("Generate reed-solomon code for SPIDER-WEB:")
         for redundant_rate in redundant_rates:
             outer_code.set_params(redundancy=redundant_rate)
             for data_index, payloads in enumerate(data_groups):
-                stored_messages = outer_code.insert(binary_messages=payloads, address_length=20,
-                                                    skipping_range=100, block_size=100)
+                stored_messages = outer_code.insert(binary_messages=payloads, address_length=address_length,
+                                                    skipping_range=skipping_range, block_size=block_size)
                 sequences = []
                 for binary_message in stored_messages:
-                    sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality, length_fixed=200))
+                    sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality,
+                                                       length_fixed=sequence_length))
                 records_2[(data_index, str(int(redundant_rate * 100 + 0.5)) + "%")] = sequences
-                monitor(current + 1, 500)
+                monitor(current + 1, sample_number * len(redundant_rates))
                 current += 1
         print()
 
         records_3, outer_code, current = {}, OuterCode(method="fountain"), 0
+        fountain_params = {"delta": 0.001, "cdist": 0.025}
         print("Generate fountain code for SPIDER-WEB:")
         for redundant_rate in redundant_rates:
             outer_code.set_params(redundancy=redundant_rate, parameters=fountain_params)
             for data_index, payloads in enumerate(data_groups):
-                stored_messages = outer_code.insert(binary_messages=payloads, address_length=20, skipping_range=100)
+                stored_messages = outer_code.insert(binary_messages=payloads, address_length=address_length,
+                                                    skipping_range=skipping_range)
                 sequences = []
                 for binary_message in stored_messages:
-                    sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality, length_fixed=200))
+                    sequences.append(inner_code.encode(message=binary_message, virtuality=virtuality,
+                                                       length_fixed=sequence_length))
                 records_3[(data_index, str(int(redundant_rate * 100 + 0.5)) + "%")] = sequences
-                monitor(current + 1, 500)
+                monitor(current + 1, sample_number * len(redundant_rates))
                 current += 1
         print()
 
         save_data(file_path=raw_path + "supplement-simulation.retrieving-3.outer-preparation.pkl",
-                  information={"none": data_groups, "basic": records_0,
+                  information={"bit": data_groups, "basic": records_0,
                                "xor": records_1, "reed-solomon": records_2, "fountain": records_3})
 
     if not path.exists(path=raw_path + "supplement-simulation.retrieving-4.redundant-retrieval.pkl"):
+        address_length, bit_length, sample_number, sequence_length, skipping_range = 20, 80, 10, 200, 100
         redundant_rates, error_params, reads_params = linspace(0.01, 0.50), arange(0, 9), arange(1, 51)
         prepared_data = load_data(file_path=raw_path + "supplement-simulation.retrieving-3.outer-preparation.pkl")
-        original_sample_number, bit_length, fountain_params = 1000, 80, {"delta": 0.001, "cdist": 0.025}
+        original_sample_number = 1000
 
         accessor, monitor = load_data(raw_path + "generation-2.special-case.pkl")[0], Monitor()
-        retriever = FastRepair(accessor, virtuality, False, False, 200)
-        decoder = FastDecoder(accessor, virtuality, False, False, 100)
+        retriever = FastRepair(accessor, virtuality, False, False, sequence_length)
+        decoder = FastDecoder(accessor, virtuality, False, False, address_length + bit_length)
 
         print("Test baseline:")
         records_0, current = {}, 0
         for errors in error_params:
-            cases = zeros(shape=(len(reads_params), 10, 2))
+            cases = zeros(shape=(len(reads_params), sample_number, 2))
             for reads in reads_params:
-                for data_index in range(10):
+                for data_index in range(sample_number):
                     expected_messages = prepared_data["bit"][data_index]
                     expected_sequences = prepared_data["basic"](data_index)
                     obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
@@ -845,7 +854,8 @@ def evaluate_retrieving(seed: int,
                     remove(source_path)
                     remove(target_path)
                     start_time, obtained_messages = datetime.now(), []
-                    address_indices, payloads = m2i(matrix=matrix[:, :20], base_size=2), matrix[:, 20:]
+                    address_indices = m2i(matrix=matrix[:, :address_length], base_size=2)
+                    payloads = matrix[:, address_length:]
                     for index in range(original_sample_number):
                         if index in address_indices:
                             obtained_messages.append(payloads[where(address_indices == index)[0]][0])
@@ -870,9 +880,9 @@ def evaluate_retrieving(seed: int,
             outer_code.set_params(redundancy=redundant_rate)
             records_1[str(redundant_index + 1) + "%"] = {}
             for errors in error_params:
-                cases = zeros(shape=(len(reads_params), 10, 2))
+                cases = zeros(shape=(len(reads_params), sample_number, 2))
                 for reads in reads_params:
-                    for data_index in range(10):
+                    for data_index in range(sample_number):
                         expected_messages = prepared_data["bit"][data_index]
                         expected_sequences = prepared_data["xor"][(data_index, redundant_rate)]
                         obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
@@ -896,9 +906,9 @@ def evaluate_retrieving(seed: int,
                         remove(source_path)
                         remove(target_path)
                         start_time = datetime.now()
-                        obtained_messages = outer_code.repair(binary_messages=matrix, address_length=20,
+                        obtained_messages = outer_code.repair(binary_messages=matrix, address_length=address_length,
                                                               original_number=original_sample_number,
-                                                              skipping_range=100)
+                                                              skipping_range=skipping_range)
                         runtime_3 = (datetime.now() - start_time).total_seconds()
                         time = runtime_1 + runtime_2 + runtime_3
                         # noinspection PyUnresolvedReferences
@@ -913,11 +923,12 @@ def evaluate_retrieving(seed: int,
 
         print("Test reed-solomon code:")
         records_2, outer_code, current = {}, OuterCode(method="reed-solomon"), 0
+        block_size = 100
         for redundant_index, redundant_rate in enumerate(redundant_rates):
             outer_code.set_params(redundancy=redundant_rate)
             records_2[str(redundant_index + 1) + "%"] = {}
             for errors in error_params:
-                cases = zeros(shape=(len(reads_params), 10, 2))
+                cases = zeros(shape=(len(reads_params), sample_number, 2))
                 for reads in reads_params:
                     for data_index in range(10):
                         expected_messages = prepared_data["bit"][data_index]
@@ -943,9 +954,9 @@ def evaluate_retrieving(seed: int,
                         remove(source_path)
                         remove(target_path)
                         start_time = datetime.now()
-                        obtained_messages = outer_code.repair(binary_messages=matrix, address_length=20,
+                        obtained_messages = outer_code.repair(binary_messages=matrix, address_length=address_length,
                                                               original_number=original_sample_number,
-                                                              skipping_range=100, block_size=100)
+                                                              skipping_range=skipping_range, block_size=block_size)
                         runtime_3 = (datetime.now() - start_time).total_seconds()
                         time = runtime_1 + runtime_2 + runtime_3
                         # noinspection PyUnresolvedReferences
@@ -960,13 +971,14 @@ def evaluate_retrieving(seed: int,
 
         print("Test fountain code:")
         records_3, outer_code, current = {}, OuterCode(method="fountain"), 0
+        fountain_params = {"delta": 0.001, "cdist": 0.025}
         for redundant_index, redundant_rate in enumerate(redundant_rates):
             outer_code.set_params(redundancy=redundant_rate, parameters=fountain_params)
             records_3[str(redundant_index + 1) + "%"] = {}
             for errors in error_params:
                 cases = zeros(shape=(len(reads_params), 10, 2))
                 for reads in reads_params:
-                    for data_index in range(10):
+                    for data_index in range(sample_number):
                         expected_messages = prepared_data["bit"][data_index]
                         expected_sequences = prepared_data["fountain"][(data_index, redundant_rate)]
                         obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
@@ -990,9 +1002,9 @@ def evaluate_retrieving(seed: int,
                         remove(source_path)
                         remove(target_path)
                         start_time = datetime.now()
-                        obtained_messages = outer_code.repair(binary_messages=matrix, address_length=20,
+                        obtained_messages = outer_code.repair(binary_messages=matrix, address_length=address_length,
                                                               original_number=original_sample_number,
-                                                              skipping_range=100)
+                                                              skipping_range=skipping_range)
                         runtime_3 = (datetime.now() - start_time).total_seconds()
                         time = runtime_1 + runtime_2 + runtime_3
                         # noinspection PyUnresolvedReferences

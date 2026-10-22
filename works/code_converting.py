@@ -95,9 +95,6 @@ class DNAFountain:
                         flag = False
                         break
 
-            if not flag:
-                screened_count += 1
-
             if verbose:
                 monitor(sum(self.__success), len(binary_messages))
 

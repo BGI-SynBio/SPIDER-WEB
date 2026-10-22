@@ -77,8 +77,8 @@ def evaluate_conversion(seed: int,
                         a, b = collection_map[index]
                         if a <= density <= b and len(records[index]) < required_number:
                             records[index].append(density)
-                            save_data(file_path=tmp_path + str(index) + "." + str(len(records[index])) + ".npy",
-                                      information=accessor)
+                            identity = str(index) + "." + str(len(records[index])).zfill(len(str(required_number)))
+                            save_data(file_path=tmp_path + identity + ".npy", information=accessor)
                             process += 1
                             break
             except RuntimeError:
@@ -89,15 +89,17 @@ def evaluate_conversion(seed: int,
             if process == section * required_number:
                 break
 
+        random.seed()
+
         with ZipFile(file=raw_path + "simulation.conversion-2.graphs.zip", mode="w",
                      compression=ZIP_DEFLATED) as file:
             for index in range(section):
                 for number in range(1, required_number + 1):
-                    accessor_path = tmp_path + str(index) + "." + str(number) + ".npy"
-                    # noinspection PyTypeChecker
+                    identity = str(index) + "." + str(number).zfill(len(str(required_number)))
+                    accessor_path = tmp_path + identity + ".npy"
+                    # noinspection bad-argument-type
                     file.write(accessor_path, path.basename(accessor_path))
                     remove(accessor_path)
-        random.seed()
 
     if not path.exists(path=raw_path + "simulation.conversion-3.tradeoffs.pkl"):
         with ZipFile(raw_path + "simulation.conversion-2.graphs.zip") as file:
@@ -110,7 +112,7 @@ def evaluate_conversion(seed: int,
         records["random"] = []
         for index in range(section):
             for number in range(1, required_number + 1):
-                accessor_path = tmp_path + str(index) + "." + str(number) + ".npy"
+                accessor_path = tmp_path + str(index) + "." + str(number).zfill(len(str(required_number))) + ".npy"
                 accessor_1 = load_data(file_path=accessor_path)
                 bound_1 = approximate_capacity(accessor=accessor_1)
                 vertex_number_1 = len(where(sum(((accessor_1 + 1).astype(bool)), axis=1).astype(bool) == 1)[0])
@@ -126,9 +128,10 @@ def evaluate_conversion(seed: int,
                 bound_3 = approximate_capacity(accessor=accessor_3)
                 vertex_number_3 = len(where(sum(((accessor_3 + 1).astype(bool)), axis=1).astype(bool) == 1)[0])
                 records["random"].append((bound_1, bound_2, bound_3, vertex_number_1, vertex_number_2, vertex_number_3))
-                monitor(current, section * required_number + 60)
                 remove(accessor_path)
+
                 current += 1
+                monitor(current, section * required_number + 60)
 
         records["basic"] = []
         for homopolymer in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
@@ -151,8 +154,9 @@ def evaluate_conversion(seed: int,
                 bound_3 = approximate_capacity(accessor=accessor_3)
                 vertex_number_3 = len(where(sum(((accessor_3 + 1).astype(bool)), axis=1).astype(bool) == 1)[0])
                 records["basic"].append((bound_1, bound_2, bound_3, vertex_number_1, vertex_number_2, vertex_number_3))
-                monitor(current, section * required_number + 60)
+
                 current += 1
+                monitor(current, section * required_number + 60)
 
         save_data(file_path=raw_path + "simulation.conversion-3.tradeoffs.pkl", information=records)
 
