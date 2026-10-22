@@ -145,6 +145,19 @@ During our replication tests, we observed that certain dictionary-based data str
 may yield different MD5 checksums when serialised using Python's pickle module, even when their contents are identical.
 Therefore, differences in MD5 checksums or file sizes do not necessarily indicate differences in the underlying data.
 
+## Important notes on computational replicability
+
+In this study, we have made an experimental effort to provide a nearly complete set of computational workflows and 
+to ensure their reliability to the greatest extent possible, 
+including, but not limited to, additional automated tests and selective replication tests. 
+Although the core code is automatically tested upon each push to the GitHub repository, 
+the project has evolved over seven years, and certain non-core workflow scripts may still contain issues arising from 
+the integration of scripts developed across different versions. 
+In addition, some computational steps may involve sources of randomness that are not fully controlled, 
+or scenarios that were not anticipated during the original experiments. 
+If users encounter bugs or discrepancies in the reproduced results, they are encouraged to contact the
+[authors]([authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md)) for further investigation.
+
 ## Recommendations while running the replicability workflow
 
 The pipelines in `step_*.py` can generally be divided into four categories according to their computational roles. 
