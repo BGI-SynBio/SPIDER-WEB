@@ -624,7 +624,7 @@ def main_f06():
                 forward_address, reverse_address = address_data[(frame_index, raw_index)]
                 difference = distance(forward_address, reverse_address)
                 collection[forward_address] = [[], [difference] * 159 * 2]
-                collection[forward_address] = [[], [difference] * 159 * 2]
+                collection[reverse_address] = [[], [difference] * 159 * 2]
         for frame_index in range(16):
             for raw_index in range(10):
                 forward_address, reverse_address = address_data[(frame_index, raw_index)]

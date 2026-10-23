@@ -832,7 +832,7 @@ def evaluate_retrieving(seed: int,
             for reads in reads_params:
                 for data_index in range(sample_number):
                     expected_messages = prepared_data["bit"][data_index]
-                    expected_sequences = prepared_data["basic"](data_index)
+                    expected_sequences = prepared_data["basic"][data_index]
                     obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
                                                   errors=errors, reads=reads, seed=seed + data_index)
                     source_path = tmp_path + "sr.csv"
@@ -867,9 +867,10 @@ def evaluate_retrieving(seed: int,
                     time = runtime_1 + runtime_2 + runtime_3
                     # noinspection PyUnresolvedReferences
                     rate = sum(all(obtained_messages == expected_messages, axis=1)) / float(original_sample_number)
-                    cases[reads - 1, data_index, 0] = [time, rate]
+                    cases[reads - 1, data_index] = [time, rate]
 
                     monitor(current + 1, 4500)
+                    current += 1
 
             records_0[("%.1f" % (errors / 2)) + "%"] = cases
         print()
@@ -884,7 +885,8 @@ def evaluate_retrieving(seed: int,
                 for reads in reads_params:
                     for data_index in range(sample_number):
                         expected_messages = prepared_data["bit"][data_index]
-                        expected_sequences = prepared_data["xor"][(data_index, redundant_rate)]
+                        label = (data_index, str(int(redundant_rate * 100 + 0.5)) + "%")
+                        expected_sequences = prepared_data["xor"][label]
                         obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
                                                       errors=errors, reads=reads, seed=seed + data_index)
                         source_path = tmp_path + "sr.csv"
@@ -930,9 +932,10 @@ def evaluate_retrieving(seed: int,
             for errors in error_params:
                 cases = zeros(shape=(len(reads_params), sample_number, 2))
                 for reads in reads_params:
-                    for data_index in range(10):
+                    for data_index in range(sample_number):
                         expected_messages = prepared_data["bit"][data_index]
-                        expected_sequences = prepared_data["reed-solomon"][(data_index, redundant_rate)]
+                        label = (data_index, str(int(redundant_rate * 100 + 0.5)) + "%")
+                        expected_sequences = prepared_data["reed-solomon"][label]
                         obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
                                                       errors=errors, reads=reads, seed=seed + data_index)
                         source_path = tmp_path + "sr.csv"
@@ -976,11 +979,12 @@ def evaluate_retrieving(seed: int,
             outer_code.set_params(redundancy=redundant_rate, parameters=fountain_params)
             records_3[str(redundant_index + 1) + "%"] = {}
             for errors in error_params:
-                cases = zeros(shape=(len(reads_params), 10, 2))
+                cases = zeros(shape=(len(reads_params), sample_number, 2))
                 for reads in reads_params:
                     for data_index in range(sample_number):
                         expected_messages = prepared_data["bit"][data_index]
-                        expected_sequences = prepared_data["fountain"][(data_index, redundant_rate)]
+                        label = (data_index, str(int(redundant_rate * 100 + 0.5)) + "%")
+                        expected_sequences = prepared_data["fountain"][label]
                         obtained_sequences = practice(right_sequences=deepcopy(expected_sequences),
                                                       errors=errors, reads=reads, seed=seed + data_index)
                         source_path = tmp_path + "sr.csv"
