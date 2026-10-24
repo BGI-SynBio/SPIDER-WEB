@@ -352,7 +352,7 @@ def detect_palindromable(segment: str,
         if segment[location: location + window_size] in chuck_segment:  # find a palindrome.
             return True
 
-    return True
+    return False
 
 
 def compute_minimum_duplicate_spacing(segment: str,
