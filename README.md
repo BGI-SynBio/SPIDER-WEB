@@ -77,16 +77,18 @@ For more information,
 please refer to the [`README.md`](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/works/README.md) file 
 in the [`works`](https://github.com/BGI-SynBio/SPIDER-WEB/tree/main/works) directory.
 
-In this study, we have made an experimental effort to provide a nearly complete set of computational workflows and 
-to ensure their reliability to the greatest extent possible, 
-including, but not limited to, additional automated tests and selective replication tests. 
+In this study, we have made an experimental effort to provide a nearly complete set of computational workflows. 
+To ensure their reliability to the greatest extent possible, 
+we have undertaken additional measures following the acceptance of this manuscript for publication, 
+including, but not limited to, additional automated tests and selective replication tests
+conducted with the assistance of AI agents.
 Although the core code is automatically tested upon each push to the GitHub repository, 
 the project has evolved over seven years, and certain non-core workflow scripts may still contain issues arising from 
 the integration of scripts developed across different versions. 
 In addition, some computational steps may involve sources of randomness that are not fully controlled, 
 or scenarios that were not anticipated during the original experiments. 
 If users encounter bugs or discrepancies in the reproduced results, they are encouraged to contact the
-[authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md) for further investigation.
+[authors]([authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md)) for further investigation.
 
 Please note that the support provided through this code repository 
 is primarily intended for replicating the computational procedures and results reported in the publication. 
