@@ -163,8 +163,14 @@ def evaluate_conversion(seed: int,
     if not path.exists(path=raw_path + "simulation.conversion-4.speeds.pkl"):
         accessor, records, length, repeats = load_data(raw_path + "generation-2.special-case.pkl")[0], {}, 200, 100
         method = SpiderWeb(accessor=accessor)
+        # In the early implementation (before 2024),
+        # we used a set to collect randomly generated sequences and remove duplicates in the method.produce function.
+        # We noticed that the sequence order resulting from converting a set into a list was not controlled
+        # by the random seed we provided and could therefore vary across executions.
+        # However, such differences in sequence order do not affect the subsequent measurements.
         sequences = method.produce(virtuality=virtuality, length=length, diversity=1000000,
-                                   duplicatable=True, palindromable=True, fail_repeats=1000, seed=seed)[0]
+                                   allow_self_palindrome=False, duplicatable=True, palindromable=True,
+                                   fail_repeats=1000, seed=seed)[0]
 
         decoder = FastDecoder(accessor=accessor, virtuality=2023, duplicatable=False, palindromable=False, length=200)
 
@@ -202,8 +208,13 @@ def evaluate_correction(seed: int,
     if not path.exists(path=raw_path + "simulation.correction-1.sequences.pkl"):
         print("Produce 1,000,000 DNA sequences for additional correction evaluation:")
         method = SpiderWeb(accessor=accessor)
+        # In the early implementation (before 2024),
+        # we used a set to collect randomly generated sequences and remove duplicates in the method.produce function.
+        # We noticed that the sequence order resulting from converting a set into a list was not controlled
+        # by the random seed we provided and could therefore vary across executions.
+        # However, such differences in sequence order do not affect the subsequent measurements.
         right_sequences = method.produce(virtuality=virtuality, length=length, diversity=1000000,
-                                         duplicatable=True, palindromable=True,
+                                         allow_self_palindrome=False, duplicatable=True, palindromable=True,
                                          fail_repeats=1000, seed=seed, verbose=True)[0]
         print()
         save_data(file_path=raw_path + "simulation.correction-1.sequences.pkl", information=right_sequences)
@@ -317,6 +328,10 @@ def evaluate_retrieving(seed: int,
     length, maximum_error = 200, 8
 
     if not path.exists(path=raw_path + "simulation.retrieving-1.sequences.pkl"):
+        # Here we used a set to collect randomly generated sequences and remove duplicates.
+        # Therefore, the sequence order resulting from converting a set into a list was not controlled
+        # by the random seed we provided and could therefore vary across executions.
+        # However, such differences in sequence order do not affect the subsequent measurements.
         diversity, batch_size = 10 ** ceil(log10(8 * (1024 ** 3) / (0.724 * length))).astype(int), 1000000
         pool = Pool(processes=10)
         for used_seed in arange(10, dtype=int) + seed:

@@ -341,7 +341,13 @@ def evaluate_correction(seed: int,
         vertex_number, right_data = len(method.get_params()["vertices"]), {}
         for new_virtuality in range(vertex_number):
             right_data[new_virtuality] = method.produce(virtuality=new_virtuality, length=length, diversity=1000,
-                                                        duplicatable=True, palindromable=True, seed=seed)[0]
+                                                        allow_self_palindrome=False, duplicatable=True,
+                                                        palindromable=True, seed=seed)[0]
+            # In the early implementation (before 2024), we used a set to collect randomly generated sequences
+            # and remove duplicates in the method.produce function.
+            # We noticed that the sequence order resulting from converting a set into a list was not controlled
+            # by the random seed we provided and could therefore vary across executions.
+            # However, such differences in sequence order do not affect the subsequent measurements.
             monitor(new_virtuality + 1, vertex_number)
         print()
 
