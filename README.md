@@ -77,12 +77,23 @@ For more information,
 please refer to the [`README.md`](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/works/README.md) file 
 in the [`works`](https://github.com/BGI-SynBio/SPIDER-WEB/tree/main/works) directory.
 
+In this study, we have made an experimental effort to provide a nearly complete set of computational workflows and 
+to ensure their reliability to the greatest extent possible, 
+including, but not limited to, additional automated tests and selective replication tests. 
+Although the core code is automatically tested upon each push to the GitHub repository, 
+the project has evolved over seven years, and certain non-core workflow scripts may still contain issues arising from 
+the integration of scripts developed across different versions. 
+In addition, some computational steps may involve sources of randomness that are not fully controlled, 
+or scenarios that were not anticipated during the original experiments. 
+If users encounter bugs or discrepancies in the reproduced results, they are encouraged to contact the
+[authors]([authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md)) for further investigation.
+
 Please note that the support provided through this code repository 
 is primarily intended for replicating the computational procedures and results reported in the publication. 
 We do not undertake to support unrelated studies or directly competitive follow-up studies.
 Unless otherwise agreed in writing, any study supported through this code repository 
 is subject to the terms and conditions of the 
-[`LINCECE.pdf`](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/LICENSE.pdf).
+[`LICENSE.pdf`](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/LICENSE.pdf).
 
 Some executable files used for acceleration purposes or hardware-coupled execution 
 are not directly included in this code repository.
@@ -93,12 +104,6 @@ At this stage, experiments that require coordination with specific hardware devi
 cannot be directly replicated by third parties using this code repository alone. 
 Requests related to the replicability of these hardware-coupled experiments,
 should be discussed with the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md).
-
-To further support transparent inspection of the replicability scope, 
-this repository also provides a machine-readable evidence chain describing the relationships 
-between the data elements and software components. 
-This evidence chain is intended to help users identify which repository components are associated with 
-each reported result and to inspect how computational procedures connect starting materials to final reported outputs. 
 
 ## Artificial intelligence use restriction
 
