@@ -78,8 +78,8 @@ please refer to the [`README.md`](https://github.com/BGI-SynBio/SPIDER-WEB/blob/
 in the [`works`](https://github.com/BGI-SynBio/SPIDER-WEB/tree/main/works) directory.
 
 In this study, we have made an experimental effort to provide a nearly complete set of computational workflows. 
-To ensure their reliability to the greatest extent possible, 
-we have undertaken additional measures following the acceptance of this manuscript for publication, 
+To further improve their reliability, 
+we have undertaken additional measures following the acceptance in principle of this manuscript for publication, 
 including, but not limited to, additional automated tests and selective replication tests
 conducted with the assistance of AI agents.
 Although the core code is automatically tested upon each push to the GitHub repository, 

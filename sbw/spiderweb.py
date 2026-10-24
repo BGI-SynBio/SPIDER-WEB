@@ -397,16 +397,25 @@ class SpiderWeb:
             base_values = s2m(dna_sequences=[sequence[self.__windowed:]])
 
         if not self.__all_3:
+
             for process, base_value in enumerate(base_values):
                 available_values = []
                 for value in self.__accessor[vertex]:
                     if value >= 0:
                         nucleotide, available = self.__bases[value % 4], True
                         if duplicatable:
-                            if self.__check_duplicatable(sequence=sequence[:process + self.__windowed] + nucleotide):
+                            if virtuality is not None:
+                                detected_fragment = sequence[:process]
+                            else:
+                                detected_fragment = sequence[:process + self.__windowed]
+                            if self.__check_duplicatable(sequence=detected_fragment + nucleotide):
                                 available = False
                         if palindromable:
-                            if self.__check_palindromable(sequence=sequence[:process + self.__windowed] + nucleotide):
+                            if virtuality is not None:
+                                detected_fragment = sequence[:process]
+                            else:
+                                detected_fragment = sequence[:process + self.__windowed]
+                            if self.__check_palindromable(sequence=detected_fragment + nucleotide):
                                 available = False
                         if available:
                             available_values.append(value)

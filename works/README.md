@@ -148,9 +148,8 @@ Therefore, differences in MD5 checksums or file sizes do not necessarily indicat
 ## Important notes on computational replicability
 
 In this study, we have made an experimental effort to provide a nearly complete set of computational workflows. 
-In this study, we have made an experimental effort to provide a nearly complete set of computational workflows. 
-To ensure their reliability to the greatest extent possible, 
-we have undertaken additional measures following the acceptance of this manuscript for publication, 
+To further improve their reliability, 
+we have undertaken additional measures following the acceptance in principle of this manuscript for publication, 
 including, but not limited to, additional automated tests and selective replication tests
 conducted with the assistance of AI agents.
 Although the core code is automatically tested upon each push to the GitHub repository, 
