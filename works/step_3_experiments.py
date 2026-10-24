@@ -3645,7 +3645,7 @@ def experiment_2(seed: int):
             monitor(current + 1, len(nanopore_sequences))
 
         count = 0
-        for detection in enumerate(detections):
+        for detection in detections:
             if detection:
                 count += 1
         print("%d out of 3200 blocks were successfully retrieved." % count)
