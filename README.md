@@ -88,7 +88,7 @@ the integration of scripts developed across different versions.
 In addition, some computational steps may involve sources of randomness that are not fully controlled, 
 or scenarios that were not anticipated during the original experiments. 
 If users encounter bugs or discrepancies in the reproduced results, they are encouraged to contact the
-[authors]([authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md)) for further investigation.
+[authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md) for further investigation.
 
 Please note that the support provided through this code repository 
 is primarily intended for replicating the computational procedures and results reported in the publication. 
@@ -109,7 +109,7 @@ should be discussed with the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/
 
 ## Artificial intelligence use restriction
 
-No license is granted to use any Repository Content, 
+No licence is granted to use any Repository Content, 
 in whole or in part, for the purpose of developing, training, fine-tuning, validating, testing, benchmarking, 
 evaluating, improving, or otherwise enabling any artificial intelligence system, 
 machine learning system, large language model, foundation model, generative model, 
