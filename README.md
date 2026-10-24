@@ -86,7 +86,7 @@ the integration of scripts developed across different versions.
 In addition, some computational steps may involve sources of randomness that are not fully controlled, 
 or scenarios that were not anticipated during the original experiments. 
 If users encounter bugs or discrepancies in the reproduced results, they are encouraged to contact the
-[authors]([authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md)) for further investigation.
+[authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.md) for further investigation.
 
 Please note that the support provided through this code repository 
 is primarily intended for replicating the computational procedures and results reported in the publication. 
