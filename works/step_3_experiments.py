@@ -3204,8 +3204,7 @@ def experiment_1(seed: int,
                         total_count = len(retrieved_data)
                         result_1 = (success_count, runtime, contain_count, total_count)
 
-                        # noinspection PyUnresolvedReferences
-                        source_path = tmp_path + index_scope + "." + pcr_number[1:] + "." + str(batch_index) + ".csv"
+                        source_path = tmp_path + index_scope + "." + str(pcr_number) + "." + str(batch_index) + ".csv"
                         target_path = tmp_path + "result.csv"
 
                         with open(file=source_path, mode="w") as file:
@@ -3325,6 +3324,7 @@ def experiment_2(seed: int):
                     segment_info[(frame_index, index_1, index_2)] = produced_set
 
                     monitor(current + 1, 3200)
+                    current += 1
 
         assert all(frames == chuck_matrix)
         save_data(file_path=raw_path + "experiment.case-3.raw-payloads.pkl", information=segment_info)

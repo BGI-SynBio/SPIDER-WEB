@@ -296,26 +296,31 @@ def evaluate_correction(seed: int,
         save_data(file_path=raw_path + "simulation.correction-3.multiple.pkl", information=records)
 
     if not path.exists(path=raw_path + "simulation.correction-4.readouts.pkl"):
-        records, retrievers, repeats, maximum_thread = {}, {}, 100, 9
+        records, retrievers, repeats, maximum_thread = {}, {}, 100, 12
         for threads in arange(1, maximum_thread + 1):
             retrievers[threads] = FastRepair(accessor=accessor, virtuality=virtuality, thread_number=threads,
                                              duplicatable=False, palindromable=False, length=length)
+            records[threads] = {}
+
         right_sequences = load_data(file_path=raw_path + "simulation.correction-1.sequences.pkl")
         for errors in range(maximum_error + 1):
             source_path = tmp_path + "s" + str(errors) + ".csv"
             target_path = tmp_path + "t" + str(errors) + ".csv"
+
             if not path.exists(path=source_path):
                 wrong_sequences = practice(right_sequences=right_sequences, errors=errors, seed=seed)
                 with open(source_path, "w") as file:
                     for wrong_sequence in wrong_sequences:
                         file.write(wrong_sequence + "\n")
-            records[errors] = {}
-            for threads in arange(1, 10):
+
+            for threads in arange(1, maximum_thread + 1):
+                records[threads][errors] = []
                 for repeat in range(repeats):
                     retrievers[threads].start(sequence_paths=(source_path, target_path))
                     runtime = retrievers[threads].retrieve_from_file(diversity=len(right_sequences))[1]["runtime"]
-                    records[errors][threads].append(runtime)
+                    records[threads][errors].append(runtime)
             remove(target_path)
+
         for errors in range(maximum_error + 1):
             remove(tmp_path + "s" + str(errors) + ".csv")
 
@@ -432,12 +437,12 @@ def evaluate_retrieving(seed: int,
         used_parts, records = [sequence[:length] for sequence in total_data], {}
 
         retriever = FastRepair(accessor, virtuality, False, False, length)
-        repeats, error_params, reads_params = 4, [1, 6], arange(10, 101, 10, dtype=int)
+        repeats, error_params = 10, [1, 6]
         for diversity in [10, 100, 1000, 10000, 100000]:
             expected, chuck = used_parts[:diversity], set(used_parts[:diversity])
             for errors in error_params:
-                saved_reads, our_runtimes, cov_runtimes, cov_retrieval = 0, [], [], []
-                for reads in reads_params:
+                saved_reads, our_runtimes, cov_runtimes, cov_retrieval, reads = 0, [], [], [], 2
+                while True:
                     our_values = [[], []]
                     for repeat in range(repeats):
                         obtained = practice(right_sequences=expected, errors=errors, reads=reads, seed=seed + repeat)
@@ -455,9 +460,9 @@ def evaluate_retrieving(seed: int,
                         our_values[0].append(len(chuck.intersection(set(retrieved))))
                         our_values[1].append(runtime)
                     if all(array(our_values[0]) == diversity):
-                        saved_reads = reads
-                        our_runtimes.append(our_values[1])
+                        saved_reads, our_runtimes = reads, our_values[1]
                         break
+                    reads += 1
 
                 for repeat in range(repeats):
                     obtained = practice(right_sequences=expected, errors=errors, reads=saved_reads, seed=seed + repeat)

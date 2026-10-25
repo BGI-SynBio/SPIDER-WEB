@@ -59,7 +59,7 @@ including the file name, MD5 checksum, and file size in bytes.
 | 31         | supplement-simulation.conversion-1.fountain.pkl            | bc2bff65ad75f9663d13b84a36555561 | 1146135           |
 | 32         | supplement-simulation.conversion-2.basic.pkl               | 343c28da2075fe745617f272e70dedab | 23821             |
 | 33         | supplement-simulation.conversion-3.fast-tradeoffs.1.pkl    | e18d5eb9d3434a520e562c4d7b08f360 | 34146             |
-| 34         | supplement-simulation.conversion-4.fast-tradeoffs.2.pkl    | 46f3977e93c1cdb237db87ac462825f0 | 53469             |
+| 34         | supplement-simulation.conversion-4.fast-tradeoffs.2.pkl    | fe576221241e74291e057432f0677cdf | 60845             |
 | 35         | supplement-simulation.conversion-5.selection.pkl           | 7ec2543f152e4a324de2e3c29f09150c | 206663            |
 | 36         | supplement-simulation.correction-1.single.pkl              | 0bf40ddfc26af48b09fa806fde05fe54 | 779               |
 | 37         | supplement-simulation.correction-2.sequences.pkl           | efed83012378028b76aca8f893d5da72 | 871425425         |

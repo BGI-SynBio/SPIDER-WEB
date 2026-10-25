@@ -161,7 +161,7 @@ def evaluate_conversion(seed: int,
             file.extractall(tmp_path)
 
         print("Quantify the impact of eliminating ambiguity on decoding speed:")
-        monitor, process, sample_number, required_number = Monitor(), 0, 10000, 100
+        monitor, process, sample_number, required_number = Monitor(), 0, 100, 100
 
         records, window_length, degrees = {"random": [], "basic": []}, 10, array([1, 2, 3, 4])
         for index in range(10):
@@ -176,32 +176,36 @@ def evaluate_conversion(seed: int,
                     method = SpiderWeb(accessor=accessor_2)
                     bound_2 = approximate_capacity(accessor=accessor_2)
                     if bound_1 == 0 or bound_2 == 0:
-                        continue
-                    density_reduction, runtime_improvements = bound_2 / bound_1, []
-                    for message_length in [100, 200, 300, 400, 500]:
-                        random.seed(seed)
-                        binary_messages = random.randint(0, 2, size=(sample_number, message_length))
-                        dna_sequences = []
-                        # noinspection PyTypeChecker
-                        for binary_message in binary_messages:
-                            dna_sequences.append(basic_encode(binary_message=binary_message,
-                                                              accessor=accessor_1, virtuality=0))
-                        start_time = datetime.now()
-                        for dna_sequence in dna_sequences:
-                            basic_decode(dna_sequence=dna_sequence, accessor=accessor_1, virtuality=0,
-                                         bit_length=message_length)
-                        runtime_1 = (datetime.now() - start_time).total_seconds()
+                        records["random"].append((-2, []))
+                    else:
+                        density_reduction, runtime_improvements = bound_2 / bound_1, []
+                        for message_length in [100, 200, 300, 400, 500]:
+                            random.seed(seed)
+                            binary_messages = random.randint(0, 2, size=(sample_number, message_length))
+                            dna_sequences = []
+                            # noinspection PyTypeChecker
+                            for binary_message in binary_messages:
+                                dna_sequences.append(basic_encode(binary_message=binary_message,
+                                                                  accessor=accessor_1, virtuality=0))
+                            start_time = datetime.now()
+                            for dna_sequence in dna_sequences:
+                                basic_decode(dna_sequence=dna_sequence, accessor=accessor_1, virtuality=0,
+                                             bit_length=message_length)
+                            runtime_1 = (datetime.now() - start_time).total_seconds()
 
-                        dna_sequences = []
-                        # noinspection PyTypeChecker
-                        for binary_message in binary_messages:
-                            dna_sequences.append(method.encode(message=binary_message, virtuality=0))
-                        start_time = datetime.now()
-                        for dna_sequence in dna_sequences:
-                            method.decode(sequence=dna_sequence, length=message_length, virtuality=0)
-                        runtime_2 = (datetime.now() - start_time).total_seconds()
-                        runtime_improvements.append(runtime_1 / runtime_2)
-                    records["random"].append((density_reduction, runtime_improvements))
+                            dna_sequences = []
+                            # noinspection PyTypeChecker
+                            for binary_message in binary_messages:
+                                dna_sequences.append(method.encode(message=binary_message, virtuality=0))
+                            start_time = datetime.now()
+                            for dna_sequence in dna_sequences:
+                                method.decode(sequence=dna_sequence, length=message_length, virtuality=0)
+                            runtime_2 = (datetime.now() - start_time).total_seconds()
+                            runtime_improvements.append(runtime_1 / runtime_2)
+                        records["random"].append((density_reduction, runtime_improvements))
+                else:
+                    records["random"].append((-1, []))
+
                 monitor(process + 1, 1060)
                 process += 1
 
@@ -219,32 +223,36 @@ def evaluate_conversion(seed: int,
                     method = SpiderWeb(accessor=accessor_2)
                     bound_2 = approximate_capacity(accessor=accessor_2)
                     if bound_1 == 0 or bound_2 == 0:
-                        continue
-                    density_reduction, runtime_improvements = bound_2 / bound_1, []
-                    for message_length in [100, 200, 300, 400, 500]:
-                        random.seed(seed)
-                        binary_messages = random.randint(0, 2, size=(sample_number, message_length))
-                        dna_sequences = []
-                        # noinspection PyTypeChecker
-                        for binary_message in binary_messages:
-                            dna_sequences.append(basic_encode(binary_message=binary_message,
-                                                              accessor=accessor_1, virtuality=0))
-                        start_time = datetime.now()
-                        for dna_sequence in dna_sequences:
-                            basic_decode(dna_sequence=dna_sequence, accessor=accessor_1, virtuality=0,
-                                         bit_length=message_length)
-                        runtime_1 = (datetime.now() - start_time).total_seconds()
+                        records["basic"].append((-2, []))
+                    else:
+                        density_reduction, runtime_improvements = bound_2 / bound_1, []
+                        for message_length in [100, 200, 300, 400, 500]:
+                            random.seed(seed)
+                            binary_messages = random.randint(0, 2, size=(sample_number, message_length))
+                            dna_sequences = []
+                            # noinspection PyTypeChecker
+                            for binary_message in binary_messages:
+                                dna_sequences.append(basic_encode(binary_message=binary_message,
+                                                                  accessor=accessor_1, virtuality=0))
+                            start_time = datetime.now()
+                            for dna_sequence in dna_sequences:
+                                basic_decode(dna_sequence=dna_sequence, accessor=accessor_1, virtuality=0,
+                                             bit_length=message_length)
+                            runtime_1 = (datetime.now() - start_time).total_seconds()
 
-                        dna_sequences = []
-                        # noinspection PyTypeChecker
-                        for binary_message in binary_messages:
-                            dna_sequences.append(method.encode(message=binary_message, virtuality=0))
-                        start_time = datetime.now()
-                        for dna_sequence in dna_sequences:
-                            method.decode(sequence=dna_sequence, length=message_length, virtuality=0)
-                        runtime_2 = (datetime.now() - start_time).total_seconds()
-                        runtime_improvements.append(runtime_1 / runtime_2)
-                    records["basic"].append((density_reduction, runtime_improvements))
+                            dna_sequences = []
+                            # noinspection PyTypeChecker
+                            for binary_message in binary_messages:
+                                dna_sequences.append(method.encode(message=binary_message, virtuality=0))
+                            start_time = datetime.now()
+                            for dna_sequence in dna_sequences:
+                                method.decode(sequence=dna_sequence, length=message_length, virtuality=0)
+                            runtime_2 = (datetime.now() - start_time).total_seconds()
+                            runtime_improvements.append(runtime_1 / runtime_2)
+                        records["basic"].append((density_reduction, runtime_improvements))
+                else:
+                    records["basic"].append((-1, []))
+
                 monitor(process + 1, 1060)
                 process += 1
 
