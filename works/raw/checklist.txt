@@ -28,7 +28,7 @@ experiment.case-6.raw-selected-addresses.pkl,6b8024b26ba5655110a7b6b87c468834,56
 experiment.case-7.buffer-graph.pkl,349700a142ab0f5ef9ddec839b7804b8,16777380
 experiment.case-8.raw-nanopore.pkl,39ee32e6ed9bcc8d30f9ecd48eca2b76,475270
 experiment.case-9.raw-per-check.pkl,49bd923aa33f6cfd2cebdc356ed3ed21,3222
-supplement-simulation.conversion-1.fountain.pkl,f597cd4d7fad551e091c6d88e87e2717,1156935
+supplement-simulation.conversion-1.fountain.pkl,bc2bff65ad75f9663d13b84a36555561,1146135
 supplement-simulation.conversion-2.basic.pkl,343c28da2075fe745617f272e70dedab,23821
 supplement-simulation.conversion-3.fast-tradeoffs.1.pkl,e18d5eb9d3434a520e562c4d7b08f360,34146
 supplement-simulation.conversion-4.fast-tradeoffs.2.pkl,46f3977e93c1cdb237db87ac462825f0,53469
