@@ -3196,6 +3196,14 @@ def experiment_1(seed: int,
                         else:
                             raw_sequences = raw_sequence_data
 
+                        # In the conventional retrieval process, we use a set to collect retrieved sequences and
+                        # remove duplicates. We noticed that the order resulting from converting a set into a list
+                        # is not controlled by the random seed and may therefore vary across executions.
+                        # Consequently, selecting a fixed number of sequences from this list may produce different
+                        # subsets, even when the underlying set of retrieved sequences remains unchanged. We retain
+                        # the use of a set for efficient membership checks and deduplication, rather than introducing
+                        # unnecessary modifications to the conventional retrieval process that could affect its
+                        # performance.
                         retrieved_data, runtime = conventional_retrieval_process(raw_sequences=raw_sequences,
                                                                                  temp_folder=temp_folder,
                                                                                  default=False)
