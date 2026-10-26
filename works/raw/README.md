@@ -39,7 +39,7 @@ including the file name, MD5 checksum, and file size in bytes.
 | 11         | simulation.retrieving-1.sequences.pkl                      | 2a1c29ede8198d825eda2d6ab5e86d08 | 20302986387       |
 | 12         | simulation.retrieving-2.rates.pkl                          | bbfc43bb308a9e83e36f1ecd6a93eca2 | 185392            |
 | 13         | simulation.retrieving-3.comparable.pkl                     | b5641867f659b081edcc90acaafab657 | 8354              |
-| 14         | simulation.retrieving-4.scalable.pkl                       | 5f317ab58622275760cc93984f7d08f2 | 2253              |
+| 14         | simulation.retrieving-4.scalable.pkl                       | eb5cd3f37a3c2db9ff6cb8bc6398fa59 | 2286              |
 | 15         | experiment.retrieval-1.sequences.pkl                       | 95f4946954c24c2382baf843e748de14 | 459134            |
 | 16         | experiment.retrieval-2.similarities.npy                    | 42768cbee8f327973fb02777411eb2eb | 36000128          |
 | 17         | experiment.retrieval-3.collections.zip                     | 901822917b40e16822ea07c44412c130 | 8701545898        |

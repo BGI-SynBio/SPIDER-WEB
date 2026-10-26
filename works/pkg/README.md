@@ -19,7 +19,7 @@ the [authors](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/CORRESPONDENCE.
 | main-01.pkl | 36b9cc2c2228de445d241e1b0b94ebd3 | 146               |
 | main-02.pkl | daac0a5458e8fdb67fa545cbf16f2dd2 | 109664            |
 | main-03.pkl | 80ab10e2a66c780789b62b10f9171934 | 54717             |
-| main-04.pkl | e99f90a28ef4e08ca822c8ca8e52af76 | 497209            |
+| main-04.pkl | 185d32f793b2472f863d61de262273c2 | 497209            |
 | main-05.pkl | 8b4f3085dfed9e7f8be6d8a4d9c274cd | 820381            |
 | main-06.pkl | 2efd607a1ccd2ae5d779ae051441fb93 | 56119             |
 | supp-02.pkl | 6782dc26c24a7cdbd2ec0d29e56f1ea7 | 632               |

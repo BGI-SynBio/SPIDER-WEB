@@ -437,8 +437,8 @@ def evaluate_retrieving(seed: int,
         used_parts, records = [sequence[:length] for sequence in total_data], {}
 
         retriever = FastRepair(accessor, virtuality, False, False, length)
-        repeats, error_params = 10, [1, 6]
-        for diversity in [10, 100, 1000, 10000, 100000]:
+        repeats, error_params, diversity = 10, [1, 6], 10
+        while diversity <= maximum_diversity:
             expected, chuck = used_parts[:diversity], set(used_parts[:diversity])
             for errors in error_params:
                 saved_reads, our_runtimes, cov_runtimes, cov_retrieval, reads = 0, [], [], [], 2
@@ -471,6 +471,7 @@ def evaluate_retrieving(seed: int,
                     cov_retrieval.append(len(chuck.intersection(set(retrieved))))
                     cov_runtimes.append(runtime)
                 records[(diversity, errors)] = (saved_reads, our_runtimes, cov_runtimes, cov_retrieval)
+            diversity *= 10
 
         save_data(file_path=raw_path + "simulation.retrieving-4.scalable.pkl", information=records)
 
