@@ -635,9 +635,10 @@ def main_f06():
                         collection[observed_address][0] += [difference_1, difference_2]
         x_labels, y_counts = arange(61), zeros(shape=(2, 61), dtype=float)
         for _, values in collection.items():
-            for value in values:
-                y_counts[0, value[0]] += 1
-                y_counts[1, value[1]] += 1
+            for value in values[0]:
+                y_counts[0, value] += 1
+            for value in values[1]:
+                y_counts[1, value] += 1
         y_counts[0] /= sum(y_counts[0])
         y_counts[1] /= sum(y_counts[1])
         results["b"] = (x_labels, y_counts)

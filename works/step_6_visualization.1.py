@@ -1916,7 +1916,7 @@ def main_f06():
 
     pyplot.xlabel("edit error rate per sequence (%)", fontsize=9)
     pyplot.ylabel("proportion (%)", fontsize=9)
-    pyplot.xticks(linspace(0.002, 0.007, 6), ["%.1f" % v for v in linspace(0.2, 0.8, 6)], fontsize=9)
+    pyplot.xticks(linspace(0.002, 0.007, 6), ["%.1f" % v for v in linspace(0.2, 0.7, 6)], fontsize=9)
     pyplot.yticks(linspace(0, 0.032, 5), ["%.1f" % v for v in linspace(0, 3.2, 5)], fontsize=9)
     pyplot.xlim(0.002, 0.007)
     pyplot.ylim(0, 0.032)
