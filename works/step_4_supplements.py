@@ -446,7 +446,7 @@ def evaluate_retrieving(seed: int,
                         # not controlled by the random seed and may therefore vary across executions. Consequently,
                         # selecting a fixed number of sequences from this list may produce different subsets, even when
                         # the underlying set of retrieved sequences remains unchanged. We retain the use of a set for
-                        # efficient membership checks and deduplication, rather than introducing unnecessary 
+                        # efficient membership checks and deduplication, rather than introducing unnecessary
                         # modifications to the conventional retrieval process that could affect its performance.
                         retrieved_data, runtime = conventional_retrieval_process(raw_sequences=raw_sequences,
                                                                                  temp_folder=temp_folder)
