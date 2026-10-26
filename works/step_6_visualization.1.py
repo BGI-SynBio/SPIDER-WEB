@@ -1980,7 +1980,7 @@ def main_f06():
             pyplot.vlines(bounds[label][0][index], (4 - index) + 0.85, (4 - index) + 1.15, lw=0.75, color="k", zorder=2)
             pyplot.scatter([bounds[label][0][index]], [(4 - index) + 1.00], s=20,
                            ec="k", fc=color, lw=0.75, zorder=3)
-            pyplot.text(bounds[label][0][index], (4 - index) + 1.35, "%.2f" % (bounds[label][0][index] + 0.08),
+            pyplot.text(bounds[label][0][index], (4 - index) + 1.35, "%.2f" % bounds[label][0][index],
                         va="center", ha="center", fontsize=8)
 
     pyplot.text(182.5, 4.20, "sequencing depth (X)", va="center", ha="center", fontsize=8)

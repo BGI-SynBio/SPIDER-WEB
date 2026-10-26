@@ -20,7 +20,7 @@ the twenty figures included in the Supplementary Information is summarised below
 | main-03.pdf | b01dad83474646669f86b2a41808925e | 89812             |
 | main-04.pdf | 88079409ef916833d0fe3c924628c24c | 55611             |
 | main-05.pdf | 580d5073f7d60079fa26105ed6414fa8 | 1214365           |
-| main-06.pdf | 2de661ed73f164d17b1f514ef3c531ec | 549073            |
+| main-06.pdf | 6459b980ad897fb4eaee240868aa35ab | 549074            |
 | supp-01.pdf | 2fe0dc8b13df54b2c80dcd9f333f4b7e | 15438             |
 | supp-02.pdf | eac2baabd1582a5a6789f4691c6418bf | 22042             |
 | supp-03.pdf | 6cbf23439189a82f50b874a19a92c1ab | 23935             |
