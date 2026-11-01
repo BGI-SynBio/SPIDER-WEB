@@ -23,7 +23,7 @@ def main_f01():
     """
     Create Figure 1 in the main text.
 
-    TITLE: Overview of this work.
+    TITLE: Overview of SPIDER-WEB.
     """
     shown_data = load_data(file_path=pkg_path + "main-01.pkl")
 

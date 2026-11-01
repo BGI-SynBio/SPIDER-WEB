@@ -19,7 +19,7 @@ def main_f01():
     """
     Create plotting data for Figure 1 in the main text.
 
-    TITLE: Overview of this work.
+    TITLE: Overview of SPIDER-WEB.
     """
     if not path.exists(pkg_path + "main-01.pkl"):
         results = {}
