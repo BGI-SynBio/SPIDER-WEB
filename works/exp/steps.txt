@@ -1,0 +1,5 @@
+Verify the raw data from the error-tolerant data retrieval experiment:
+|████████████████████|100% (36/36) used 0000:06:37 (error number: 0).
+
+Verify the raw data from the real-time data retrieval experiment:
+|████████████████████|100% (4581/4581) used 0000:00:09 (error number: 0).

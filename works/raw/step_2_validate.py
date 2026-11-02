@@ -1,5 +1,5 @@
 from hashlib import md5
-from os import path
+from os import path, remove
 
 from sbw import Monitor
 
@@ -24,18 +24,21 @@ if __name__ == "__main__":
     monitor = Monitor()
 
     print("Verify the intermediate outputs from reproducible computational procedures:")
-    total, saved_info = len(data), []
+    total, saved_paths, saved_info = len(data), [], []
     for process, (child_path, (expected_md5, expected_size)) in enumerate(data.items()):
         used_path = f"{raw_path}{child_path}"
-        if not path.exists(used_path):
+        if path.exists(used_path):
+            obtained_md5, obtained_size = obtain_info(file_path=used_path)
+            if obtained_md5 != expected_md5 or obtained_size != expected_size:
+                shared_info_1 = f"expected MD5 vs obtained MD5 = {expected_md5} vs {obtained_md5}"
+                shared_info_2 = f"expected size vs obtained size = {expected_size} vs {obtained_size}"
+                saved_info.append(f"{used_path} mismatch detected, redownload required ({shared_info_1}; {shared_info_2}).")
+                saved_paths.append(used_path)
+        else:
             saved_info.append(f"{child_path} does not exist.")
-        obtained_md5, obtained_size = obtain_info(file_path=used_path)
-        if obtained_md5 != expected_md5 or obtained_size != expected_size:
-            shared_info_1 = f"expected MD5 vs obtained MD5 = {expected_md5} vs {obtained_md5}"
-            shared_info_2 = f"expected size vs obtained size = {expected_size} vs {obtained_size}"
-            saved_info.append(f"{used_path} mismatch detected, redownload required ({shared_info_1}; {shared_info_2}).")
         monitor(process + 1, total, extra={"error number": len(saved_info)})
     if len(saved_info):
         for info in saved_info:
             print(info)
-        raise ValueError
+        for used_path in saved_paths:
+            remove(used_path)
