@@ -137,11 +137,16 @@ def download_exp_dataset(project_id: str,
                 archive.extractall(temporary)
 
             folder_name = path.splitext(zip_file_name)[0]
-            for file_name in listdir(temporary):
+            # noinspection bad-argument-type
+            for file_name in listdir(path.join(temporary, folder_name)):
                 if file_name.endswith(".npy"):
-                    move(path.join(temporary, file_name), f"{exp_path}2/{folder_name}/output/{file_name}")
+                    # noinspection bad-argument-type
+                    move(path.join(temporary, folder_name, file_name),
+                         f"{exp_path}2/{folder_name}/output/{file_name}")
                 elif file_name.endswith(".csv"):
-                    move(path.join(temporary, file_name), f"{exp_path}2/{folder_name}/{file_name}")
+                    # noinspection bad-argument-type
+                    move(path.join(temporary, folder_name, file_name),
+                         f"{exp_path}2/{folder_name}/{file_name}")
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ if __name__ == "__main__":
     monitor = Monitor()
 
     print("Verify the raw data from the error-tolerant data retrieval experiment:")
-    total, saved_paths, saved_info = len(data_1), [], []
+    total, saved_paths, saved_info_1 = len(data_1), [], []
     for process, (child_path, (expected_md5, expected_size)) in enumerate(data_1.items()):
         used_path = f"{exp_path}1/{child_path}"
         if path.exists(used_path):
@@ -39,13 +39,13 @@ if __name__ == "__main__":
             if obtained_md5 != expected_md5 or obtained_size != expected_size:
                 shared_info_1 = f"expected MD5 vs obtained MD5 = {expected_md5} vs {obtained_md5}"
                 shared_info_2 = f"expected size vs obtained size = {expected_size} vs {obtained_size}"
-                saved_info.append(f"{used_path} mismatch detected, redownload required ({shared_info_1}; {shared_info_2}).")
+                saved_info_1.append(f"{used_path} mismatch detected, redownload required ({shared_info_1}; {shared_info_2}).")
                 saved_paths.append(used_path)
         else:
-            saved_info.append(f"{child_path} does not exist.")
-        monitor(process + 1, total, extra={"error number": len(saved_info)})
-    if len(saved_info):
-        for info in saved_info:
+            saved_info_1.append(f"{child_path} does not exist.")
+        monitor(process + 1, total, extra={"error number": len(saved_info_1)})
+    if len(saved_info_1):
+        for info in saved_info_1:
             print(info)
         for used_path in saved_paths:
             remove(used_path)
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     print()
 
     print("Verify the raw data from the real-time data retrieval experiment:")
-    total, saved_paths, saved_info = len(data_2), [], []
+    total, saved_paths, saved_info_2 = len(data_2), [], []
     for process, (child_path, (expected_md5, expected_size)) in enumerate(data_2.items()):
         used_path = f"{exp_path}2/{child_path}"
         if path.exists(used_path):
@@ -61,13 +61,16 @@ if __name__ == "__main__":
             if obtained_md5 != expected_md5 or obtained_size != expected_size:
                 shared_info_1 = f"expected MD5 vs obtained MD5 = {expected_md5} vs {obtained_md5}"
                 shared_info_2 = f"expected size vs obtained size = {expected_size} vs {obtained_size}"
-                saved_info.append(f"{used_path} mismatch detected, redownload required ({shared_info_1}; {shared_info_2}).")
+                saved_info_2.append(f"{used_path} mismatch detected, redownload required ({shared_info_1}; {shared_info_2}).")
                 saved_paths.append(used_path)
         else:
-            saved_info.append(f"{child_path} does not exist.")
-        monitor(process + 1, total, extra={"error number": len(saved_info)})
-    if len(saved_info):
-        for info in saved_info:
+            saved_info_2.append(f"{child_path} does not exist.")
+        monitor(process + 1, total, extra={"error number": len(saved_info_2)})
+    if len(saved_info_2):
+        for info in saved_info_2:
             print(info)
         for used_path in saved_paths:
             remove(used_path)
+
+    if len(saved_info_1) or len(saved_info_2):
+        raise SystemExit(1)

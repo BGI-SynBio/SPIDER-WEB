@@ -30,7 +30,7 @@ def download_raw_dataset(article_id: str,
         # skip this file that has already been downloaded.
         file_path = f"{raw_path}{file_name}"
         if path.exists(file_path) and path.getsize(file_path) == size:
-            return
+            continue
 
         print(f"Downloading ({index + 1}/{len(file_list)}): {file_name}")
 

@@ -1,3 +1,15 @@
+Download data in figshare:
+Downloading (1/5): 250F501329017.zip
+|████████████████████|100% (7089842/7089842) used 0000:00:00.
+Downloading (2/5): 250F501329018.zip
+|████████████████████|100% (4382102/4382102) used 0000:00:00.
+Downloading (3/5): 250F501329019.zip
+|████████████████████|100% (6502731/6502731) used 0000:00:00.
+Downloading (4/5): 250F50132901A.zip
+|████████████████████|100% (6843047/6843047) used 0000:00:00.
+Downloading (5/5): 250F50132901B.zip
+|████████████████████|100% (4906130/4906130) used 0000:00:00.
+
 Verify the raw data from the error-tolerant data retrieval experiment:
 |████████████████████|100% (36/36) used 0000:06:37 (error number: 0).
 

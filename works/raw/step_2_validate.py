@@ -42,3 +42,4 @@ if __name__ == "__main__":
             print(info)
         for used_path in saved_paths:
             remove(used_path)
+        raise SystemExit(1)
