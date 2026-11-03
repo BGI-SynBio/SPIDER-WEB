@@ -4,7 +4,8 @@
 
 # Real-time data retrieval of DNA-based data storage with SPIDER-WEB 
 
-[![CircleCI](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main.svg?style=shield)](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main)[![PythonVersion](https://img.shields.io/badge/python-3.10-blue)](https://img.shields.io/badge/python-3.10-blue)
+[![CircleCI](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main.svg?style=shield)](https://circleci.com/gh/BGI-SynBio/SPIDER-WEB/tree/main)
+[![PythonVersion](https://img.shields.io/badge/python-3.10-blue)](https://img.shields.io/badge/python-3.10-blue) 
 [![Licence](https://img.shields.io/badge/Licence-BGI_Research_Open_Source_v1-orange.svg)](https://github.com/BGI-SynBio/SPIDER-WEB/blob/main/LICENSE.pdf)
 [![Publication](https://img.shields.io/badge/Publication-Nature_Computational_Science-red.svg)]()
 
