@@ -18,10 +18,10 @@ Across 3,000 synthesised data-coding DNA sequences,
 SPIDER-WEB demonstrated an efficiency improvement of 587-fold to 9,083-fold over optimised conventional pipelines. 
 Projections for megabyte and exabyte-scale retrievals show even greater gains, 
 with efficiency enhancements of 3.0-3.2 and 24.0-29.7 orders of magnitude, respectively. 
-On a laptop, SPIDER-WEB achieves retrieval throughput up to 13.8 MB/s. 
+On a laptop, SPIDER-WEB achieves retrieval throughput up to 13.9 MB/s. 
 When integrated with nanopore sequencing, 
 SPIDER-WEB enabled progressive rendering of a 19,200-byte video during sequencing, 
-with full retrieval completed within 100 seconds. 
+with full retrieval completed in 100.14 seconds. 
 Overall, we demonstrate that the compact-disc-level retrieval performance is achievable in DNA-based data storage.
 
 ## Repository structure
